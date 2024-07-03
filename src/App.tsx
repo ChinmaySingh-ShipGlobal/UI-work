@@ -1,11 +1,9 @@
-import Buttons from "@/components/elements/Buttons";
-import TabsDemo from "@/components/elements/Tabs";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
-      {/* <Buttons /> */}
-      <TabsDemo />
+      <Home />
     </>
   );
 }

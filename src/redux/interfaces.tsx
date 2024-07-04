@@ -1,4 +1,4 @@
-interface RateState {
+export interface RateState {
   id: number;
   country: string;
   pincode: string;
@@ -6,7 +6,9 @@ interface RateState {
   length: string;
   breadth: string;
   height: string;
+  sortOrder: string;
 }
+
 export const RateInitialState: RateState = {
   id: 1,
   country: "",
@@ -15,4 +17,9 @@ export const RateInitialState: RateState = {
   length: "",
   breadth: "",
   height: "",
+  sortOrder: "",
 };
+
+export interface RateCalculatorProps {
+  setShowCalculatedWeight: React.Dispatch<React.SetStateAction<boolean>>;
+}

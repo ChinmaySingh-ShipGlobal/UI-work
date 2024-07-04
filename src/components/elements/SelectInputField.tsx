@@ -8,10 +8,12 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { Label } from "../ui/label";
+
 interface SelectItems {
   key: string;
   value: string;
 }
+
 interface SelectInputFieldProps {
   name: string;
   label?: string;
@@ -20,20 +22,26 @@ interface SelectInputFieldProps {
   required?: boolean;
   data: SelectItems[];
   defaultValue?: string;
+  setSelectValueObj: (prev) => void;
 }
-export default function SelectInputField({
+
+const SelectInputField: React.FC<SelectInputFieldProps> = ({
   data,
   name,
   className,
   defaultValue,
   label,
   placeholder,
-}: SelectInputFieldProps) {
+  setSelectValueObj,
+}) => {
+  const onSelectChange = (value) => {
+    setSelectValueObj(value);
+  };
   return (
     <div>
       <Label htmlFor={name}>{label}</Label>
       <div className="mt-2">
-        <Select defaultValue={defaultValue}>
+        <Select onValueChange={onSelectChange} defaultValue={defaultValue}>
           <SelectTrigger className={cn(`ring-1 ring-gray-100`, className)}>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
@@ -50,4 +58,6 @@ export default function SelectInputField({
       </div>
     </div>
   );
-}
+};
+
+export default SelectInputField;

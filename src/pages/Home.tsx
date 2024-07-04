@@ -1,9 +1,6 @@
-import { CalculatedWeight } from "@/templates/CalculatedWeight";
-import EmptyTab from "@/templates/EmptyTab";
-import { PartnerTable } from "@/templates/PartnerTable";
-import RateCalculator from "@/templates/RateCalculator";
-import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
+import RateCalculatorForm from "@/templates/RateCalculatorForm";
+import Summary from "@/templates/Summary";
 
 export default function Home() {
   const [showCalculatedWeight, setShowCalculatedWeight] =
@@ -16,28 +13,13 @@ export default function Home() {
           <p className="m-2 p-2">Rate Calculator</p>
           <div className="bg-white">
             <form>
-              <Card className="lg:w-2/3">
-                <CardContent>
-                  <div>
-                    <RateCalculator
-                      setShowCalculatedWeight={setShowCalculatedWeight}
-                    />
-                    {showCalculatedWeight && (
-                      <>
-                        <CalculatedWeight />
-                        <PartnerTable />
-                      </>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-              <Card className="hidden lg:w-1/3">
-                <CardContent>
-                  <div>
-                    <EmptyTab />
-                  </div>
-                </CardContent>
-              </Card>
+              {/* Rate calculator form */}
+              <RateCalculatorForm
+                showCalculatedWeight={showCalculatedWeight}
+                setShowCalculatedWeight={setShowCalculatedWeight}
+              />
+              {/* Summary */}
+              <Summary />
             </form>
           </div>
         </div>

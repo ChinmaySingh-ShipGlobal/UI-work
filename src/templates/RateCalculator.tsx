@@ -16,7 +16,7 @@ export default function RateCalculator({
     { key: "albania", value: "Albania" },
   ];
   const dispatch = useDispatch();
-  const rateForm = useSelector((state: RootState) => state);
+  const rateForm = useSelector((state: RootState) => state.rate);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

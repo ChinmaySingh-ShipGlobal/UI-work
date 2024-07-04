@@ -2,21 +2,14 @@ import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 
 export function CalculatedWeight() {
-  const rateForm = useSelector((state: RootState) => state);
-
+  const rateForm = useSelector((state: RootState) => state.rate);
+  console.log(rateForm, "rate");
   const volumetric_weight =
-    (parseInt(rateForm.length) *
-      parseInt(rateForm.breadth) *
-      parseInt(rateForm.height)) /
-    5000;
-  console.log(
-    rateForm.weight,
-    rateForm.height,
-    rateForm.length,
-    rateForm.breadth,
-    rateForm.height,
-    "sjknkjdnjkndjknkjnkjn"
-  );
+    parseInt(rateForm.length) *
+    parseInt(rateForm.breadth) *
+    parseInt(rateForm.height);
+  5000;
+
   return (
     <div className="flex justify-center mt-6 text-gray-700">
       <div className="grid gap-1 grid-cols-3">
@@ -36,7 +29,7 @@ export function CalculatedWeight() {
           <p className="text-sm font-semibold">
             {parseInt(rateForm.weight) > volumetric_weight
               ? rateForm.weight
-              : volumetric_weight}
+              : volumetric_weight}{" "}
             KG
           </p>
           <p className="text-sm font-semibold ">Billed weight</p>

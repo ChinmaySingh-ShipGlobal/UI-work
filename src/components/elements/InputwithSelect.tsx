@@ -76,7 +76,7 @@ const InputwithSelect: React.FC<InputWithSelectProps> = ({
             onChangeFn={(event) => handleChange(event)}
           />
         </div>
-        <div className="bg-gray-200 scale-y-95 p-2 mt-2 rounded-r-sm text-sm border w-1/5 lg:w-1/3 text-center">
+        <div className="bg-gray-200 p-2 mt-2 rounded-r-sm text-sm border w-1/5 lg:w-1/3 text-center">
           {unit}
         </div>
       </div>

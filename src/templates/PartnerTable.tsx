@@ -61,18 +61,12 @@ export function PartnerTable() {
       <Table className="w-full">
         <TableHeader>
           <TableRow className="bg-gray-200 text-gray-600 text-sm">
-            <TableHead className="py-2 lg:whitespace-nowrap">
-              Courier Partner
-            </TableHead>
-            <TableHead className="py-2 lg:whitespace-nowrap">Rating</TableHead>
-            <TableHead className="py-2 lg:whitespace-nowrap">
-              Estimated Delivery Time
-            </TableHead>
-            <TableHead className="py-2 lg:whitespace-nowrap">
-              Shipment Rate
-            </TableHead>
-            <TableHead className="py-2 lg:whitespace-nowrap">Speed</TableHead>
-            <TableHead className="py-2 lg:whitespace-nowrap">Action</TableHead>
+            <TableHead className="py-2 ">Courier Partner</TableHead>
+            <TableHead className="py-2">Rating</TableHead>
+            <TableHead className="py-2 ">Estimated Delivery Time</TableHead>
+            <TableHead className="py-2">Shipment Rate</TableHead>
+            <TableHead className="py-2"></TableHead>
+            <TableHead className="py-2 ">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody className="text-left">

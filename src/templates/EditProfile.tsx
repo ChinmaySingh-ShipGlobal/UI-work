@@ -29,22 +29,29 @@ export function EditProfile() {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className="mb-4 text-left flex flex-row justify-between items-center">
-            Edit Profile Details <X />
+            Edit Profile Details{" "}
+            <AlertDialogCancel className="bg-transparent border-none">
+              <X />
+            </AlertDialogCancel>
           </AlertDialogTitle>
         </AlertDialogHeader>
         <div>
-          <div className="flex justify-center items-center relative">
+          <div className="flex justify-center items-center ">
             <UserRound className="scale-150 rounded-full bg-blue text-white p-1 z-0" />
             <Pencil className="bg-white border border-gray-300  h-4 w-4 z-10 rounded-full mt-4" />
           </div>
-          <div className="flex gap-y-4 justify-center items-center text-left mt-8 flex-col lg:gap-4">
-            <div className="flex flex-col lg:flex-row">
-              <InputWithLabel label="Last Name" type="text" placeholder="Type here ..." />
-              <InputWithLabel label="First Name" type="text" placeholder="Type here ..." />
+          <div className="flex-1 gap-4 justify-center  text-left mt-8 flex-col lg:gap-4 w-full">
+            <div className="flex flex-col lg:flex-row lg:gap-x-4">
+              <div className="lg:w-1/2">
+                <InputWithLabel label="First Name" type="text" placeholder="Type here ..." classNameDiv="mt-2" />
+              </div>
+              <div className="lg:w-1/2">
+                <InputWithLabel label="Last Name" type="text" placeholder="Type here ..." classNameDiv="mt-2" />
+              </div>
             </div>
-            <InputWithLabel label="Company Name" type="text" placeholder="Type here ..." classNameDiv="" />
-            <InputWithLabel label="Email Id" type="email" placeholder="emailid@gmail.com" />
-            <InputWithTag title="Mobile Number" unit="+91" placeholder="Type here ..." />
+            <InputWithLabel label="Company Name" type="text" placeholder="Type here ..." classNameDiv="mt-2" />
+            <InputWithLabel label="Email Id" type="email" placeholder="emailid@gmail.com" classNameDiv="mt-2" />
+            <InputWithTag title="Mobile Number" tag="+91" placeholder="Type here ..." classNameDiv="mt-2" />
           </div>
         </div>
 

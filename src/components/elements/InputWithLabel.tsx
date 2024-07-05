@@ -1,6 +1,5 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 
 interface InputWithLabelProps {
   label: string;
@@ -11,9 +10,9 @@ interface InputWithLabelProps {
 
 const InputWithLabel: React.FC<InputWithLabelProps> = ({ label, type, placeholder, classNameDiv }) => {
   return (
-    <div className={cn(`grid w-full max-w-sm items-center gap-1.5`, classNameDiv)}>
+    <div className={classNameDiv}>
       <Label htmlFor={label}>{label}</Label>
-      <Input type={type} placeholder={placeholder} className="mt-2" />
+      <Input type={type} placeholder={placeholder} className="mt-1" />
     </div>
   );
 };

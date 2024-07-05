@@ -1,4 +1,5 @@
 import EditButton from "@/components/elements/EditButton";
+import TextFieldAndValue from "@/components/elements/TextFieldAndValue";
 import { UserRound } from "lucide-react";
 
 export default function ProfileDetails() {
@@ -14,15 +15,13 @@ export default function ProfileDetails() {
         </div>
       </div>
       <div className="lg:col-span-2">
-        <p className="text-sm text-gray-600">Email Id</p>
-        <p className="text-sm mt-1">Harikesh.chaturvedi@gmail.com</p>
+        <TextFieldAndValue title="Email Id" value="Harikesh.chaturvedi@gmail.com" />
       </div>
-      <div>
-        <p className="text-sm text-gray-600">Mobile Number</p>
-        <p className="text-sm mt-1">+91-8829881129</p>
-      </div>
-      <div className="w-1/2 lg:ml-15">
-        <EditButton />
+      <TextFieldAndValue title="Mobile number" value="+91-8829881129" />
+      <div className="lg:flex lg:justify-end">
+        <div className="w-1/2">
+          <EditButton />
+        </div>
       </div>
     </div>
   );

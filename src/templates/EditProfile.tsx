@@ -26,16 +26,16 @@ export function EditProfile() {
           Edit
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle className="mb-4 text-left flex flex-row justify-between items-center">
+      <AlertDialogContent className="m-0 p-0">
+        <AlertDialogHeader className="px-6 py-2 border-b">
+          <AlertDialogTitle className=" text-left flex flex-row justify-between items-center">
             Edit Profile Details{" "}
             <AlertDialogCancel className="bg-transparent border-none">
               <X />
             </AlertDialogCancel>
           </AlertDialogTitle>
         </AlertDialogHeader>
-        <div>
+        <div className="p-6">
           <div className="flex justify-center items-center ">
             <UserRound className="scale-150 rounded-full bg-blue text-white p-1 z-0" />
             <Pencil className="bg-white border border-gray-300  h-4 w-4 z-10 rounded-full mt-4" />
@@ -54,9 +54,8 @@ export function EditProfile() {
             <InputWithTag title="Mobile Number" tag="+91" placeholder="Type here ..." classNameDiv="mt-2" />
           </div>
         </div>
-
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogFooter className="px-6 py-4 flex flex-row items-center border-t gap-4 justify-end">
+          <AlertDialogCancel className="mb-2 md:mb-0">Cancel</AlertDialogCancel>
           <AlertDialogAction>Save</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

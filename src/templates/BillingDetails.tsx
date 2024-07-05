@@ -1,6 +1,6 @@
-import EditButton from "@/components/elements/EditButton";
 import TextFieldAndValue from "@/components/elements/TextFieldAndValue";
 import { MapPin } from "lucide-react";
+import { EditBilling } from "./EditBilling";
 
 export default function BillingDetails() {
   return (
@@ -11,7 +11,7 @@ export default function BillingDetails() {
             <MapPin className="text-orange bg-pink-100 p-1 scale-150 rounded-full" />
             <p className="text-base font-bold">Billing Address</p>
           </div>
-          <EditButton />
+          <EditBilling />
         </div>
         <TextFieldAndValue title="House Number" value="L / 176-B" />
         <TextFieldAndValue title="Locality" value="New Loco Colony" />

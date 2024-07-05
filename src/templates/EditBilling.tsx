@@ -46,7 +46,7 @@ export function EditBilling() {
           </div>
         </div>
 
-        <AlertDialogFooter className="px-6 py-4 flex flex-row items-center border-t mt-6 gap-4 justify-end">
+        <AlertDialogFooter className="px-6 py-2 flex flex-row items-center border-t mt-6 gap-4 justify-end">
           <AlertDialogCancel className="mb-2 md:mb-0">Cancel</AlertDialogCancel>
           <AlertDialogAction>Save</AlertDialogAction>
         </AlertDialogFooter>

@@ -1,41 +1,3 @@
-// import { Label } from "../ui/label";
-// import InputField from "./InputField";
-// import { cn } from "@/lib/utils";
-
-// interface InputWithSelectProps {
-//   inputName: string;
-//   type: string;
-//   label?: string;
-//   classNameInput?: string;
-//   unit: string;
-//   defaultValue?: string;
-// }
-// export default function InputwithSelect({
-//   inputName,
-//   label,
-//   type,
-//   classNameInput,
-//   unit,
-// }: InputWithSelectProps) {
-//   return (
-//     <>
-//       <div>
-//         <Label>{label}</Label>
-//         <div className="flex flex-row  items-center">
-//           <InputField
-//             name={inputName}
-//             type={type}
-//             className={cn(classNameInput, "rounded rounded-r-none")}
-//           />
-
-//           <div className="bg-gray-200 p-2 mt-2 rounded-r-sm text-sm border">
-//             {unit}
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
 import { Label } from "../ui/label";
 import InputField from "./InputField";
 import { cn } from "@/lib/utils";
@@ -76,9 +38,7 @@ const InputwithSelect: React.FC<InputWithSelectProps> = ({
             onChangeFn={(event) => handleChange(event)}
           />
         </div>
-        <div className="bg-gray-200 p-2 mt-2 rounded-r-sm text-sm border w-1/5 lg:w-1/3 text-center">
-          {unit}
-        </div>
+        <div className="bg-gray-200 p-2 mt-2 rounded-r-sm text-sm border w-1/5 lg:w-1/3 text-center">{unit}</div>
       </div>
     </div>
   );

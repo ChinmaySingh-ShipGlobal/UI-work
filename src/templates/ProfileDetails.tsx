@@ -1,6 +1,6 @@
-import EditButton from "@/components/elements/EditButton";
 import TextFieldAndValue from "@/components/elements/TextFieldAndValue";
 import { UserRound } from "lucide-react";
+import { EditProfile } from "./EditProfile";
 
 export default function ProfileDetails() {
   return (
@@ -20,7 +20,7 @@ export default function ProfileDetails() {
       <TextFieldAndValue title="Mobile number" value="+91-8829881129" />
       <div className="lg:flex lg:justify-end lg:mr-5 xl:ml-18">
         <div className="w-1/2">
-          <EditButton />
+          <EditProfile />
         </div>
       </div>
     </div>

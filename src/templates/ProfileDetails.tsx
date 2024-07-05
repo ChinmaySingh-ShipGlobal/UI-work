@@ -18,7 +18,7 @@ export default function ProfileDetails() {
         <TextFieldAndValue title="Email Id" value="Harikesh.chaturvedi@gmail.com" />
       </div>
       <TextFieldAndValue title="Mobile number" value="+91-8829881129" />
-      <div className="lg:flex lg:justify-end">
+      <div className="lg:flex lg:justify-end lg:mr-5 xl:ml-18">
         <div className="w-1/2">
           <EditButton />
         </div>

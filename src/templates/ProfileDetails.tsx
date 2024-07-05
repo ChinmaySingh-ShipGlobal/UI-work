@@ -1,44 +1,28 @@
-import { Button } from "@/components/ui/button";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import EditButton from "@/components/elements/EditButton";
+import { UserRound } from "lucide-react";
 
 export default function ProfileDetails() {
   return (
-    <div className="max-w-sm lg:max-w-full">
-      <div className="flex flex-col justify-center py-4 gap-y-4 text-left lg:grid lg:grid-cols-6 lg:gap-4 lg:items-center">
-        {/* First container having image and Name with company name */}
-        <div className="flex flex-row gap-4 items-center py-4 lg:justify-start lg:col-span-2">
-          {/* Image container */}
-          <div className="mb-4">
-            <img
-              src="https://www.pikpng.com/pngl/b/80-805068_my-profile-icon-blank-profile-picture-circle-clipart.png"
-              alt="profileImage"
-              className="rounded-full h-15 w-15"
-            />
-          </div>
-          {/* Text container */}
-          <div>
-            <p className="text-base font-bold">Harikesh Chaturvedi</p>
-            <p className="text-sm text-gray-600">
-              Company Name: <p className="text-black lg:inline">ShipGlobal Direct</p>{" "}
-            </p>
-          </div>
-        </div>
-        {/* Second container having email */}
-        <div className="lg:col-span-2">
-          <p className="text-sm text-gray-600">Email Id</p>
-          <p className="text-sm">Harikesh.chaturvedi@gmail.com</p>
-        </div>
-        {/* Third container having mobile number */}
+    <div className="flex flex-col justify-center py-4 gap-y-4 text-left lg:grid lg:grid-cols-6 lg:gap-4 lg:items-center">
+      <div className="flex flex-row gap-4 items-center py-4 lg:justify-start lg:col-span-2">
+        <UserRound className="scale-150 rounded-full bg-blue text-white p-1" />
         <div>
-          <p className="text-sm text-gray-600">Mobile Number</p>
-          <p className="text-sm">+91-8829881129</p>
+          <p className="text-base font-bold">Harikesh Chaturvedi</p>
+          <p className="text-sm text-gray-600 mt-1">
+            Company Name: <p className="text-black lg:inline">ShipGlobal Direct</p>{" "}
+          </p>
         </div>
-        {/* Edit Button */}
-        <Button className="text-gray-600 bg-transparent border border-gray-600 font-normal">
-          <FontAwesomeIcon icon={faPencil} style={{ color: "#c7c7c7" }} className="mr-2" />
-          Edit
-        </Button>
+      </div>
+      <div className="lg:col-span-2">
+        <p className="text-sm text-gray-600">Email Id</p>
+        <p className="text-sm mt-1">Harikesh.chaturvedi@gmail.com</p>
+      </div>
+      <div>
+        <p className="text-sm text-gray-600">Mobile Number</p>
+        <p className="text-sm mt-1">+91-8829881129</p>
+      </div>
+      <div className="w-1/2 lg:ml-15">
+        <EditButton />
       </div>
     </div>
   );

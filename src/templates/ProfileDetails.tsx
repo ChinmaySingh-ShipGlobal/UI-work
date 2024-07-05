@@ -10,7 +10,7 @@ export default function ProfileDetails() {
         <div>
           <p className="text-base font-bold">Harikesh Chaturvedi</p>
           <p className="text-sm text-gray-600 mt-1">
-            Company Name: <p className="text-black lg:inline">ShipGlobal Direct</p>{" "}
+            Company Name: <p className="text-black inline">ShipGlobal Direct</p>{" "}
           </p>
         </div>
       </div>

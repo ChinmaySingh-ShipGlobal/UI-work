@@ -11,9 +11,7 @@ export default function BillingDetails() {
             <MapPin className="text-orange bg-pink-100 p-1 scale-150 rounded-full" />
             <p className="text-base font-bold">Billing Address</p>
           </div>
-          <div className="mr-0">
-            <EditButton />
-          </div>
+          <EditButton />
         </div>
         <TextFieldAndValue title="House Number" value="L / 176-B" />
         <TextFieldAndValue title="Locality" value="New Loco Colony" />

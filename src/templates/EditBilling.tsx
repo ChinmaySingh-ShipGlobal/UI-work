@@ -1,5 +1,4 @@
 import InputWithLabel from "@/components/elements/InputWithLabel";
-import InputWithTag from "@/components/elements/InputWithTag";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -33,7 +32,6 @@ export function EditBilling() {
             </AlertDialogCancel>
           </AlertDialogTitle>
         </AlertDialogHeader>
-        {/* <hr className="flex-1"></hr> */}
         <div className="flex-1 gap-4 justify-center text-left flex-col lg:gap-4 w-full px-6">
           <InputWithLabel label="Address" type="text" placeholder="Type here ..." classNameDiv="mt-2" />
           <div className="flex flex-col lg:grid-cols-2 lg:grid lg:gap-x-4">

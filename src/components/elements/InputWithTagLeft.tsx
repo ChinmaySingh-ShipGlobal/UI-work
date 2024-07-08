@@ -6,7 +6,7 @@ interface TextFieldAndValueProps {
   classNameDiv?: string;
 }
 
-const InputWithTag: React.FC<TextFieldAndValueProps> = ({ title, tag, placeholder, classNameDiv }) => {
+const InputWithTagLeft: React.FC<TextFieldAndValueProps> = ({ title, tag, placeholder, classNameDiv }) => {
   return (
     <div className={classNameDiv}>
       <p className="text-sm font-semibold">{title}</p>
@@ -20,4 +20,4 @@ const InputWithTag: React.FC<TextFieldAndValueProps> = ({ title, tag, placeholde
   );
 };
 
-export default InputWithTag;
+export default InputWithTagLeft;

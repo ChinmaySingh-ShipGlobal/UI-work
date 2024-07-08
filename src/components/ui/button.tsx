@@ -20,7 +20,7 @@ const buttonVariants = cva(
         default: "h-9 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-10 rounded-md px-8",
-        xl: "h-12 rounded-md w-full max-w-sm", // added huge button
+        xl: "h-12 rounded-md w-full max-w-sm",
         icon: "h-10 w-10",
       },
     },

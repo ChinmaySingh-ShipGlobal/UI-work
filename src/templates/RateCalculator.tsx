@@ -1,5 +1,5 @@
 import InputField from "@/components/elements/InputField";
-import InputwithSelect from "@/components/elements/InputwithSelect";
+import InputwithTagRight from "@/components/elements/InputwithTagRight";
 import SelectInputField from "@/components/elements/SelectInputField";
 import { Button } from "@/components/ui/button";
 import { addInputData, updateCountry } from "@/redux/actions";
@@ -7,9 +7,7 @@ import { RateCalculatorProps } from "@/redux/interfaces";
 import { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function RateCalculator({
-  setShowCalculatedWeight,
-}: RateCalculatorProps) {
+export default function RateCalculator({ setShowCalculatedWeight }: RateCalculatorProps) {
   const selectCountry = [
     { key: "usa", value: "USA" },
     { key: "india", value: "India" },
@@ -58,7 +56,7 @@ export default function RateCalculator({
         </div>
 
         <div>
-          <InputwithSelect
+          <InputwithTagRight
             inputName="weight"
             label="Actual Weight"
             type="string"
@@ -68,7 +66,7 @@ export default function RateCalculator({
           />
         </div>
         <div>
-          <InputwithSelect
+          <InputwithTagRight
             inputName="length"
             label="Length"
             type="string"
@@ -78,7 +76,7 @@ export default function RateCalculator({
           />
         </div>
         <div>
-          <InputwithSelect
+          <InputwithTagRight
             inputName="breadth"
             label="Breadth"
             type="string"
@@ -88,7 +86,7 @@ export default function RateCalculator({
           />
         </div>
         <div>
-          <InputwithSelect
+          <InputwithTagRight
             inputName="height"
             label="Height"
             type="string"
@@ -99,15 +97,9 @@ export default function RateCalculator({
         </div>
       </div>
       <div className="flex justify-center gap-4 mt-6 lg:justify-end">
-        <Button className="border border-blue-700 bg-transparent text-blue-700">
-          Reset
-        </Button>
+        <Button className="border border-blue-700 bg-transparent text-blue-700">Reset</Button>
 
-        <Button
-          className="border border-gray-700 bg-gray-200 text-gray-700"
-          onClick={handleCalculate}
-          type="button"
-        >
+        <Button className="border border-gray-700 bg-gray-200 text-gray-700" onClick={handleCalculate} type="button">
           Calculate
         </Button>
       </div>

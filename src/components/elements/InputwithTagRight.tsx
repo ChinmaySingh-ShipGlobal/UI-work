@@ -13,7 +13,7 @@ interface InputWithSelectProps {
   onChangeFn: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputwithSelect: React.FC<InputWithSelectProps> = ({
+const InputwithTagRight: React.FC<InputWithSelectProps> = ({
   inputName,
   label,
   type,
@@ -44,4 +44,4 @@ const InputwithSelect: React.FC<InputWithSelectProps> = ({
   );
 };
 
-export default InputwithSelect;
+export default InputwithTagRight;

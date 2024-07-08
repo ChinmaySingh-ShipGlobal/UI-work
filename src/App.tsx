@@ -1,7 +1,7 @@
 import Home from "./pages/Home";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ProfileSettings from "./pages/ProfileSettings";
-import PickUpAddress from "./pages/PickUpAddress";
+import AddPickUpAddress from "./pages/AddPickUpAddress";
 
 const router = createBrowserRouter([
   {
@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   { path: "/profile", element: <ProfileSettings /> },
-  { path: "/pickupAddress", element: <PickUpAddress /> },
+  { path: "/addPickupAddress", element: <AddPickUpAddress /> },
 ]);
 function App() {
   return <RouterProvider router={router} />;

@@ -3,7 +3,7 @@ import { Card, CardFooter } from "@/components/ui/card";
 import PersonalInformation from "@/templates/PersonalInformation";
 import PickupDetails from "@/templates/PickupDetails";
 
-export default function PickUpAddress() {
+export default function AddPickUpAddress() {
   return (
     <>
       <div className="font-semibold m-6 text-left">

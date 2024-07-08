@@ -32,6 +32,7 @@ module.exports = {
         100: "#E9EFFF",
         300: "#ADC8FF",
         700: "#4769AF",
+        light:"#f9f8ff"
       },
       orange: {
         DEFAULT: "#F69F00",

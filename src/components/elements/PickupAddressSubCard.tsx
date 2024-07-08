@@ -1,5 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import { Trash, SquarePen } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -31,21 +30,19 @@ const PickupAddressSubCard: React.FC<PickupAddressSubCardProps> = ({
         <div className="flex mt-4 gap-x-4">
           <div className="w-3/4 text-sm">
             <div className="flex flex-row">
-              <Label htmlFor="name" className="w-1/3 text-gray-800 font-semibold">
-                Address
-              </Label>
-              <div className="w-2/3">{address}</div>
+              <div className="w-1/3 text-gray-800 font-semibold">Address</div>
+              <div className="w-2/3 m-0 p-0">{address}</div>
             </div>
-            <div className="flex flex-row mt-4">
-              <Label htmlFor="contact" className="w-1/3 text-gray-800 font-semibold">
-                Contact
-              </Label>
+            <div className="flex flex-row mt-4 items-center">
+              <div className="w-1/3 text-gray-800 font-semibold">Contact</div>
               <div className="w-2/3">{contact}</div>
             </div>
           </div>
 
           <div className="w-1/4 flex place-content-end place-items-end text-right">
-            <span className={cn(`text-sm p-1 rounded px-1 font-semibold lg:whitespace-nowrap`, buttonClassName)}>
+            <span
+              className={cn(`text-sm p-1 rounded px-1 text-right font-semibold lg:whitespace-nowrap`, buttonClassName)}
+            >
               {buttonLabel}
             </span>
           </div>

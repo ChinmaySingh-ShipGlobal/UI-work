@@ -19,17 +19,17 @@ const PickupAddressSubCard: React.FC<PickupAddressSubCardProps> = ({
   buttonLabel,
 }) => {
   return (
-    <Card className="shadow-none m-4">
+    <Card className="shadow-none m-2">
       <CardContent className="m-2 p-2">
         <div className="flex justify-between items-center mb-6">
           <div className="text-baseline font-bold">{title}</div>
-          <div className="flex space-x-6 text-gray-800">
+          <div className="flex space-x-6 text-gray-800 items-center">
             <Trash className="h-5 w-5" />
             <SquarePen className="h-5 w-5" />
           </div>
         </div>
         <div className="flex mt-4 gap-x-4">
-          <div className="w-5/6 text-sm">
+          <div className="w-3/4 text-sm">
             <div className="flex flex-row">
               <Label htmlFor="name" className="w-1/3 text-gray-800 font-semibold">
                 Address
@@ -44,8 +44,8 @@ const PickupAddressSubCard: React.FC<PickupAddressSubCardProps> = ({
             </div>
           </div>
 
-          <div className="w-1/6 flex place-content-end place-items-end">
-            <span className={cn(`text-sm p-1 rounded px-1 font-semibold whitespace-nowrap`, buttonClassName)}>
+          <div className="w-1/4 flex place-content-end place-items-end text-right">
+            <span className={cn(`text-sm p-1 rounded px-1 font-semibold lg:whitespace-nowrap`, buttonClassName)}>
               {buttonLabel}
             </span>
           </div>

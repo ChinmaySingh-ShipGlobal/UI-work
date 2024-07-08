@@ -4,7 +4,7 @@ interface TextFieldAndValueProps {
   subValue?: string;
 }
 
-const TextFieldAndValue: React.FC<TextFieldAndValueProps> = ({ title, value, subValue }) => {
+const LabelWithText: React.FC<TextFieldAndValueProps> = ({ title, value, subValue }) => {
   return (
     <div>
       <p className="text-base font-semibold text-gray-600">{title}</p>
@@ -15,4 +15,4 @@ const TextFieldAndValue: React.FC<TextFieldAndValueProps> = ({ title, value, sub
   );
 };
 
-export default TextFieldAndValue;
+export default LabelWithText;

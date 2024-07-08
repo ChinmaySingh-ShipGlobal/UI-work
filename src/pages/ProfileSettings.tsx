@@ -8,9 +8,7 @@ export default function ProfileSettings() {
       <div className="font-semibold m-6 text-left">
         <Card className=" border-none shadow-none">
           <form>
-            {/* Profile Settings form */}
             <ProfileCard />
-            {/* Billing Details */}
             <BillingCard />
           </form>
         </Card>

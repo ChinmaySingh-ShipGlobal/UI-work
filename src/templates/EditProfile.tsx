@@ -17,6 +17,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserRound } from "lucide-react";
 import { X } from "lucide-react";
 import { Pencil } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface EditProfileProps {
   image: string | null;
@@ -43,16 +45,16 @@ const EditProfile: React.FC<EditProfileProps> = ({ image, onImageChange, clearIm
           </AlertDialogTitle>
         </AlertDialogHeader>
         <div className="p-6">
-          <div className="flex justify-center items-center">
-            <label>
-              {image ? (
-                <img src={image} className="h-12 w-12 rounded-full p-1 z-0" alt="Profile Preview" />
-              ) : (
-                <UserRound className="scale-150 rounded-full bg-blue text-white p-1 z-0" />
-              )}
-              <input type="file" accept="image/png, image/jpeg" onChange={onImageChange} className="filetype hidden" />
-            </label>
-            <Pencil className="bg-white border border-gray-300 h-4 w-4 z-10 rounded-full mt-4" />
+          <div className="flex justify-center items-center relative">
+            {image ? (
+              <img src={image} className="h-14 w-14 rounded-full p-0 z-0 absolute" alt="Profile Preview" />
+            ) : (
+              <UserRound className="h-14 w-14 rounded-full bg-blue text-white p-1 z-0 absolute" />
+            )}
+            <Label htmlFor="profilePic">
+              <Pencil className="bg-white border border-gray-300 h-5 w-5 z-10 rounded-full mt-1 ml-1 absolute left-36 lg:left-60" />
+              <Input type="file" id="profilePic" placeholder="" onChange={onImageChange} className="hidden" />
+            </Label>
           </div>
 
           <div className="flex-1 gap-4 justify-center text-left mt-8 flex-col lg:gap-4 w-full">

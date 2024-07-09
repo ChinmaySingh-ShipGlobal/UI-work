@@ -45,11 +45,11 @@ export default function ProfileSettings() {
                 <div className="flex flex-row gap-4 items-center  justify-between lg:col-span-4">
                   <div className="flex flex-row gap-x-4 items-center">
                     {image ? (
-                      <img src={image} className="h-12 w-12 rounded-full p-1 z-0" />
+                      <img src={image} className="h-15 w-15 rounded-full p-1 z-0" />
                     ) : (
                       <UserRound className="h-15 w-15 rounded-full bg-blue text-white lg:p-3 p-1" />
                     )}
-                    <p className="text-base font-semibold">Harikesh Chaturvedi</p>
+                    <p className="text-base font-semibold ml-3">Harikesh Chaturvedi</p>
                   </div>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
@@ -68,7 +68,7 @@ export default function ProfileSettings() {
                         </AlertDialogTitle>
                       </AlertDialogHeader>
                       <div className="p-6">
-                        <div className="flex justify-center items-center relative">
+                        <div className="flex justify-center items-center relative mt-1">
                           {image ? (
                             <img
                               src={image}
@@ -76,10 +76,10 @@ export default function ProfileSettings() {
                               alt="Profile Preview"
                             />
                           ) : (
-                            <UserRound className="h-14 w-14 rounded-full bg-blue text-white p-1 z-0 absolute" />
+                            <UserRound className="h-18 w-18 rounded-full bg-blue text-white p-1 z-0 absolute" />
                           )}
                           <Label htmlFor="profilePic">
-                            <Pencil className="bg-white border border-gray-300 h-5 w-5 z-10 rounded-full mt-1 ml-1 absolute left-36 lg:left-60" />
+                            <Pencil className="bg-white border border-gray-300 h-6 w-6 p-1 z-10 rounded-full mt-1 ml-1 absolute left-36 lg:left-60" />
                             <Input
                               type="file"
                               id="profilePic"
@@ -200,13 +200,14 @@ export default function ProfileSettings() {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-                <LabelWithText title="House Number" value="L / 176-B" divClass="mb-7" />
-                <LabelWithText title="Locality" value="New Loco Colony" divClass="mb-7" />
-                <LabelWithText title="Landmark" value="Railway Colony" divClass="mb-7" />
-                <LabelWithText title="Pin Code" value="228811" divClass="mb-7" />
-                <LabelWithText title="City" value="New Delhi" divClass="mb-7 lg:mb-5" />
-                <LabelWithText title="State" value="Delhi" divClass="mb-7 lg:mb-5" />
-                <LabelWithText title="Country" value="India" divClass="mb-7 lg:mb-5" />
+                <div className="lg:grid lg:grid-cols-4 lg:col-span-4 grid grid-cols-2">
+                  <LabelWithText title="House Number" value="L / 176-B" divClass="mb-7" />
+                  <LabelWithText title="Locality" value="New Loco Colony" divClass="mb-7" />
+                  <LabelWithText title="Pin Code" value="228811" divClass="mb-7" />
+                  <LabelWithText title="City" value="New Delhi" divClass="mb-7" />
+                  <LabelWithText title="State" value="Delhi" divClass="mb-7 lg:mb-5" />
+                  <LabelWithText title="Country" value="India" divClass="mb-7 lg:mb-5" />
+                </div>
               </div>
             </Card>
           </form>

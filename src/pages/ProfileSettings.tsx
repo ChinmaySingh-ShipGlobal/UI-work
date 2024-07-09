@@ -42,20 +42,20 @@ export default function ProfileSettings() {
           <form>
             <Card className="mb-6 px-6">
               <div className="flex flex-col justify-center py-4 gap-y-4 text-left lg:grid lg:grid-cols-4 lg:items-center">
-                <div className="flex flex-row gap-4 items-center py-4 justify-between lg:col-span-4">
-                  <div className="flex flex-row gap-4 items-center">
+                <div className="flex flex-row gap-4 items-center  justify-between lg:col-span-4">
+                  <div className="flex flex-row gap-x-4 items-center">
                     {image ? (
                       <img src={image} className="h-12 w-12 rounded-full p-1 z-0" />
                     ) : (
-                      <UserRound className="scale-150 rounded-full bg-blue text-white p-1" />
+                      <UserRound className="h-15 w-15 rounded-full bg-blue text-white lg:p-3 p-1" />
                     )}
-                    <p className="text-base font-bold">Harikesh Chaturvedi</p>
+                    <p className="text-base font-semibold">Harikesh Chaturvedi</p>
                   </div>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
-                      <Button className="text-gray-600 bg-transparent border border-gray-600 font-normal">
-                        <FontAwesomeIcon icon={faPencil} style={{ color: "#c7c7c7" }} className="mr-2" />
-                        Edit
+                      <Button className="h-8 w-18 text-gray-700 bg-transparent border border-gray-700 font-normal">
+                        <FontAwesomeIcon icon={faPencil} style={{ color: "#77809C" }} className="mr-2" />
+                        <div className="text-xs font-normal">Edit</div>
                       </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent className="m-0 p-0">
@@ -116,7 +116,7 @@ export default function ProfileSettings() {
                             classNameDiv="mt-2"
                           />
                           <InputWithLabel
-                            label="Email Id"
+                            label="Email"
                             type="email"
                             placeholder="emailid@gmail.com"
                             classNameDiv="mt-2"
@@ -144,17 +144,17 @@ export default function ProfileSettings() {
               </div>
             </Card>
             <Card className="px-6">
-              <div className="flex flex-col justify-center py-4 gap-y-4 text-left lg:grid lg:grid-cols-4 lg:items-center">
-                <div className="flex flex-row gap-4 items-center py-4 justify-between lg:col-span-4">
-                  <div className="flex flex-row gap-4 items-center">
-                    <MapPin className="text-orange bg-pink-100 p-1 scale-150 rounded-full" />
-                    <p className="text-base font-bold">Billing Address</p>
+              <div className="flex flex-col justify-center text-left lg:grid lg:grid-cols-4 lg:items-center">
+                <div className="flex flex-row gap-x-4 items-center justify-between lg:col-span-4">
+                  <div className="flex flex-row gap-x-4 items-center mt-3 mb-4">
+                    <MapPin className="text-orange bg-pink-100 p-1 h-6 w-6 rounded-full" />
+                    <p className="text-sm font-semibold">Billing Address</p>
                   </div>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
-                      <Button className="text-gray-600 bg-transparent border border-gray-600 font-normal">
-                        <FontAwesomeIcon icon={faPencil} style={{ color: "#c7c7c7" }} className="mr-2" />
-                        Edit
+                      <Button className="h-8 w-18 text-gray-700 bg-transparent border border-gray-700 font-normal">
+                        <FontAwesomeIcon icon={faPencil} style={{ color: "#77809C" }} className="mr-2" />
+                        <div className="text-xs font-normal">Edit</div>
                       </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent className="m-0 p-0 ">
@@ -200,13 +200,13 @@ export default function ProfileSettings() {
                     </AlertDialogContent>
                   </AlertDialog>
                 </div>
-                <LabelWithText title="House Number" value="L / 176-B" />
-                <LabelWithText title="Locality" value="New Loco Colony" />
-                <LabelWithText title="Landmark" value="Railway Colony" />
-                <LabelWithText title="Pin Code" value="228811" />
-                <LabelWithText title="City" value="New Delhi" />
-                <LabelWithText title="State" value="Delhi" />
-                <LabelWithText title="Country" value="India" />
+                <LabelWithText title="House Number" value="L / 176-B" divClass="mb-7" />
+                <LabelWithText title="Locality" value="New Loco Colony" divClass="mb-7" />
+                <LabelWithText title="Landmark" value="Railway Colony" divClass="mb-7" />
+                <LabelWithText title="Pin Code" value="228811" divClass="mb-7" />
+                <LabelWithText title="City" value="New Delhi" divClass="mb-7 lg:mb-5" />
+                <LabelWithText title="State" value="Delhi" divClass="mb-7 lg:mb-5" />
+                <LabelWithText title="Country" value="India" divClass="mb-7 lg:mb-5" />
               </div>
             </Card>
           </form>

@@ -27,7 +27,7 @@ export default function ProfilePopover() {
               </div>
               <div className="border-b">
                 <div className="grid gap-y-3 gap-x-2 m-2 p-2">
-                  <IconAndText icon={<CircleUserRound />} text="Edit Profile" href="/editProfile" />
+                  <IconAndText icon={<CircleUserRound />} text="Edit Profile" onClick={() => navigate("/profile")} />
                   <IconAndText icon={<Users />} text="Refer and Earn" href="/referAndEarn" />
                 </div>
               </div>
@@ -43,7 +43,6 @@ export default function ProfilePopover() {
                       icon={<ShieldEllipsis />}
                       text="Change Password"
                       onClick={() => navigate("/setPassword")}
-                      href="#"
                     />
                   </div>
                   <IconAndText icon={<CircleHelp />} text="Help Center" href="/helpCenter" />

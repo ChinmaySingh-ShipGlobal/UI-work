@@ -1,14 +1,24 @@
-interface IconandTextProps {
+interface IconAndTextProps {
   icon: any;
   text: string;
+  onClick?: () => void;
+  href?: string;
 }
 
-const IconAndText: React.FC<IconandTextProps> = ({ icon, text }) => {
+const IconAndText: React.FC<IconAndTextProps> = ({ icon, text, onClick, href }) => {
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
-    <div className="flex flex-row items-center gap-4">
+    <a href={href || "#"} className="flex flex-row items-center gap-4 hover:text-purple-600" onClick={handleLinkClick}>
       {icon}
       <p>{text}</p>
-    </div>
+    </a>
   );
 };
+
 export default IconAndText;

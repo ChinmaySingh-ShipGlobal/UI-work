@@ -1,8 +1,11 @@
 import IconAndText from "@/components/elements/IconAndText";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { UserRound, CircleUserRound, Users, ThumbsUp, ShieldEllipsis, CircleHelp, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfilePopover() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="flex flex-row justify-between items-center">
@@ -24,8 +27,8 @@ export default function ProfilePopover() {
               </div>
               <div className="border-b">
                 <div className="grid gap-y-3 gap-x-2 m-2 p-2">
-                  <IconAndText icon={<CircleUserRound />} text="Edit Profile" />
-                  <IconAndText icon={<Users />} text="Refer and Earn" />
+                  <IconAndText icon={<CircleUserRound />} text="Edit Profile" href="/editProfile" />
+                  <IconAndText icon={<Users />} text="Refer and Earn" href="/referAndEarn" />
                 </div>
               </div>
               <div className="border-b">
@@ -35,13 +38,20 @@ export default function ProfilePopover() {
               </div>
               <div className="border-b">
                 <div className="grid gap-y-3 gap-x-2 m-2 p-2">
-                  <IconAndText icon={<ShieldEllipsis />} text="Change Password" />
-                  <IconAndText icon={<CircleHelp />} text="Help Center" />
+                  <div>
+                    <IconAndText
+                      icon={<ShieldEllipsis />}
+                      text="Change Password"
+                      onClick={() => navigate("/setPassword")}
+                      href="#"
+                    />
+                  </div>
+                  <IconAndText icon={<CircleHelp />} text="Help Center" href="/helpCenter" />
                 </div>
               </div>
               <div className="border-b">
                 <div className="grid gap-2 m-2 p-2">
-                  <IconAndText icon={<LogOut />} text="Sign Out" />
+                  <IconAndText icon={<LogOut />} text="Sign Out" href="/signOut" />
                 </div>
               </div>
             </PopoverContent>

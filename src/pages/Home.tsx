@@ -134,11 +134,15 @@ export default function Home() {
                   </div>
                   {/* Reset and Calculate buttons */}
                   <div className="flex justify-center gap-4 mt-6 lg:justify-end">
-                    <Button className="border border-blue-400 bg-transparent text-blue-400 text-sm font-normal">
+                    <Button className="border border-blue-400 bg-transparent text-blue-400 text-sm font-normal hover:bg-transparent">
                       Reset
                     </Button>
                     <Button
-                      className=" bg-blue-400 text-white font-normal text-sm"
+                      className={`font-normal text-sm ${
+                        showCalculatedWeight
+                          ? "bg-gray-450 border-gray-600 border hover:bg-gray-450 text-gray-800"
+                          : " bg-blue-400 text-white"
+                      }`}
                       onClick={handleCalculate}
                       type="button"
                     >

@@ -171,15 +171,15 @@ export default function Home() {
                       </div>
                       {/* Partners Table */}
                       <div className="bg-white shadow-md rounded-md mt-4">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 lg:justify-between items-center mb-4">
+                        <div className="grid grid-cols-1 lg:flex lg:flex-row lg:justify-between items-center mb-4">
                           <p className="font-semibold text-sm font-poppins">Showing {partners.length} results</p>
-                          <div className="flex items-center justify-end">
-                            <p className="text-xs font-normal font-poppins text-gray-700 mr-2">Sort by:</p>
+                          <div className="flex h-9 flex-row rounded-sm items-center justify-end lg:border-gray-150 lg:border px-2">
+                            <p className="text-xs font-normal font-poppins h-1/2 text-gray-700 mr-2">Sort by:</p>
                             <SelectInputField
                               name="sort"
                               data={sortType}
                               defaultValue="cheapest"
-                              className="rounded-md border-gray-300 ring-0 placeholder:text-xs placeholder:font-medium text-black"
+                              className="rounded-sm h-7 mb-3 border-transparent placeholder:text-xs placeholder:font-medium text-black"
                               setSelectValueObj={handleSelectSortOrder}
                             />
                           </div>
@@ -222,7 +222,7 @@ export default function Home() {
                                     </div>
                                   </div>
                                 </TableCell>
-                                <TableCell className="py-2">
+                                <TableCell className="py-2 m-auto">
                                   <Button className="bg-blue-400 text-white text-xs font-medium font-poppins py-1 rounded-md">
                                     Create Order
                                   </Button>

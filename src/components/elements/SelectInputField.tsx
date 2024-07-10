@@ -1,11 +1,4 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  SelectGroup,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { Label } from "../ui/label";
 
@@ -39,10 +32,12 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
   };
   return (
     <div>
-      <Label htmlFor={name}>{label}</Label>
+      <Label htmlFor={name} className="font-normal text-xs">
+        {label}
+      </Label>
       <div className="mt-2">
         <Select onValueChange={onSelectChange} defaultValue={defaultValue}>
-          <SelectTrigger className={cn(`ring-1 ring-gray-100`, className)}>
+          <SelectTrigger className={cn(` ring-blue-50, text-gray-400 font-normal text-sm`, className)}>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent>

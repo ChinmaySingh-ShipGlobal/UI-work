@@ -68,7 +68,7 @@ export default function Home() {
     <>
       <div className=" bg-gray-100">
         <div className="font-semibold text-2xl text-center m-2 lg:text-left lg:ml-6">
-          <p className="m-2 p-2">Rate Calculator</p>
+          <p className="m-2 p-2 text-2xl font-medium font-poppins">Rate Calculator</p>
           <div className="bg-white">
             <form>
               <Card className="lg:w-2/3">
@@ -79,7 +79,7 @@ export default function Home() {
                       <SelectInputField
                         name="country"
                         label="Destination Country"
-                        placeholder="Select Country"
+                        placeholder="Select"
                         data={selectCountry}
                         required
                         setSelectValueObj={handleSelectCountry}
@@ -90,7 +90,7 @@ export default function Home() {
                         name="pincode"
                         label="Destination Pincode"
                         type="text"
-                        placeholder="Dest. Pincode"
+                        placeholder="Type code"
                         inputValue={rateForm.pincode}
                         onChangeFn={handleInputChange}
                       />
@@ -99,22 +99,25 @@ export default function Home() {
                       inputName="weight"
                       label="Actual Weight"
                       type="string"
-                      unit="KG"
+                      unit="kg"
                       inputValue={rateForm.weight}
                       onChangeFn={handleInputChange}
+                      placeholder="Type here ..."
                     />
                     <InputwithTagRight
                       inputName="length"
                       label="Length"
                       type="string"
                       unit="cm"
+                      placeholder="Length"
                       inputValue={rateForm.length}
                       onChangeFn={handleInputChange}
                     />
                     <InputwithTagRight
                       inputName="breadth"
-                      label="Breadth"
+                      label="Width"
                       type="string"
+                      placeholder="Width"
                       unit="cm"
                       inputValue={rateForm.breadth}
                       onChangeFn={handleInputChange}
@@ -123,6 +126,7 @@ export default function Home() {
                       inputName="height"
                       label="Height"
                       type="string"
+                      placeholder="Height"
                       unit="cm"
                       inputValue={rateForm.height}
                       onChangeFn={handleInputChange}
@@ -130,9 +134,11 @@ export default function Home() {
                   </div>
                   {/* Reset and Calculate buttons */}
                   <div className="flex justify-center gap-4 mt-6 lg:justify-end">
-                    <Button className="border border-blue-700 bg-transparent text-blue-700">Reset</Button>
+                    <Button className="border border-blue-400 bg-transparent text-blue-400 text-sm font-normal">
+                      Reset
+                    </Button>
                     <Button
-                      className="border border-gray-700 bg-gray-200 text-gray-700"
+                      className=" bg-blue-400 text-white font-normal text-sm"
                       onClick={handleCalculate}
                       type="button"
                     >
@@ -143,19 +149,19 @@ export default function Home() {
                   {showCalculatedWeight && (
                     <>
                       {/* Weights description as Dead, Volumetric and Billed weights */}
-                      <div className="flex justify-center mt-6 text-gray-700">
-                        <div className="grid gap-1 grid-cols-3">
-                          <div className="py-2 px-0 text-center border border-gray-600 rounded-lg">
-                            <p className="text-sm font-semibold">{rateForm.weight} KG</p>
+                      <div className="flex justify-center mt-10 text-gray-700">
+                        <div className="grid gap-x-3 grid-cols-3">
+                          <div className="py-2 px-0 text-center border border-gray-350 rounded-lg bg-gray-250">
+                            <p className="text-sm font-medium text-gray-650">{rateForm.weight} KG</p>
                             <p className="text-sm font-semibold text-gray-600">Dead weight</p>
                           </div>
-                          <div className="p-2 text-center border border-gray-600 rounded-lg">
-                            <p className="text-sm font-semibold">
+                          <div className="p-2 text-center border border-gray-350 rounded-lg bg-gray-250">
+                            <p className="text-sm font-medium text-gray-650">
                               {volumetric_weight > 0.01 ? volumetric_weight : 0.01} KG
                             </p>
                             <p className="text-sm font-semibold text-gray-600">Volumetric weight</p>
                           </div>
-                          <div className="p-2 text-center border border-orange-800 text-orange-800 bg-pink-100 rounded-lg">
+                          <div className="p-2 text-center border border-orange-700 text-orange-700 bg-pink-100 rounded-lg">
                             <p className="text-sm font-semibold">
                               {parseInt(rateForm.weight) > volumetric_weight ? rateForm.weight : volumetric_weight} KG
                             </p>
@@ -166,32 +172,34 @@ export default function Home() {
                       {/* Partners Table */}
                       <div className="bg-white shadow-md rounded-md mt-4">
                         <div className="grid grid-cols-1 lg:grid-cols-2 lg:justify-between items-center mb-4">
-                          <p className="font-semibold text-sm">Showing {partners.length} results</p>
+                          <p className="font-semibold text-sm font-poppins">Showing {partners.length} results</p>
                           <div className="flex items-center justify-end">
-                            <p className="text-sm text-gray-600 mr-2">Sort by:</p>
+                            <p className="text-xs font-normal font-poppins text-gray-700 mr-2">Sort by:</p>
                             <SelectInputField
                               name="sort"
                               data={sortType}
                               defaultValue="cheapest"
-                              className="rounded-md border-gray-300 ring-0"
+                              className="rounded-md border-gray-300 ring-0 placeholder:text-xs placeholder:font-medium text-black"
                               setSelectValueObj={handleSelectSortOrder}
                             />
                           </div>
                         </div>
                         <Table className="w-full">
                           <TableHeader>
-                            <TableRow className="bg-gray-200 text-gray-600 text-sm">
-                              <TableHead className="py-2 ">Courier Partner</TableHead>
-                              <TableHead className="py-2">Rating</TableHead>
-                              <TableHead className="py-2 ">Estimated Delivery Time</TableHead>
-                              <TableHead className="py-2">Shipment Rate</TableHead>
-                              <TableHead className="py-2"></TableHead>
-                              <TableHead className="py-2 ">Action</TableHead>
+                            <TableRow className="bg-gray-100 text-gray-800 text-xs font-medium font-poppins border-blue-50">
+                              <TableHead className="py-2 text-xs font-medium font-poppins ">Courier Partner</TableHead>
+                              <TableHead className="py-2 text-xs font-medium font-poppins ">Rating</TableHead>
+                              <TableHead className="py-2 text-xs font-medium font-poppins ">
+                                Estimated Delivery Time
+                              </TableHead>
+                              <TableHead className="py-2 text-xs font-medium font-poppins ">Shipment Rate</TableHead>
+                              <TableHead className="py-2 text-xs font-medium font-poppins "></TableHead>
+                              <TableHead className="py-2 text-xs font-medium font-poppins ">Action</TableHead>
                             </TableRow>
                           </TableHeader>
                           <TableBody className="text-left">
                             {partners.map((partner, index) => (
-                              <TableRow key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
+                              <TableRow key={index} className="border-blue-light">
                                 <TableCell className="py-2">{partner.partner}</TableCell>
                                 <TableCell className="py-2 flex items-center mt-2">
                                   {partner.rating}
@@ -199,15 +207,25 @@ export default function Home() {
                                 </TableCell>
                                 <TableCell className="py-2">{partner.time}</TableCell>
                                 <TableCell className="py-2">{partner.rate}</TableCell>
-                                <TableCell
-                                  className={`py-2 ${
-                                    partner.speed === "Fastest" ? "text-orange" : "text-purple"
-                                  } lg:whitespace-nowrap`}
-                                >
-                                  {partner.speed}
+                                <TableCell>
+                                  <div className={`text-center`}>
+                                    <div
+                                      className={`rounded-sm 
+                                        ${
+                                          partner.speed === "Fastest"
+                                            ? "text-orange-dark bg-orange-light"
+                                            : "text-purple bg-blue-light"
+                                        }
+                                      `}
+                                    >
+                                      {partner.speed}
+                                    </div>
+                                  </div>
                                 </TableCell>
                                 <TableCell className="py-2">
-                                  <Button className="bg-blue text-white py-1 rounded-md">Create Order</Button>
+                                  <Button className="bg-blue-400 text-white text-xs font-medium font-poppins py-1 rounded-md">
+                                    Create Order
+                                  </Button>
                                 </TableCell>
                               </TableRow>
                             ))}

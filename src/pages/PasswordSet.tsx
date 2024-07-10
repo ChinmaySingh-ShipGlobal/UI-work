@@ -47,12 +47,12 @@ export function PasswordSet() {
               <PasswordFormField label="New Password" name="newPassword" form={form} />
               <PasswordFormField label="Confirm Password" name="confirmPassword" form={form} />
               <div className="flex flex-row justify-end items-center gap-x-4">
-                <Button type="submit" className="bg-blue-400 text-white text-xs font-normal font-poppins">
-                  Submit
-                </Button>
                 <AlertDialogCancel className="mt-0 border-blue-400 border text-blue-400 text-xs font-normal font-poppins bg-transparent">
                   Cancel
                 </AlertDialogCancel>
+                <Button type="submit" className="bg-blue-400 text-white text-xs font-normal font-poppins">
+                  Save
+                </Button>
               </div>
             </form>
           </Form>

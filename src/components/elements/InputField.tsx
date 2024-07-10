@@ -27,13 +27,15 @@ const InputField: React.FC<InputFieldProps> = ({
 
   return (
     <div>
-      <Label htmlFor={name}>{label}</Label>
+      <Label htmlFor={name} className="text-xs font-normal font-poppins">
+        {label}
+      </Label>
       <div className="mt-2">
         <Input
           type={type}
           name={name}
           placeholder={placeholder}
-          className={cn(`ring-1 ring-gray-100`, className)}
+          className={cn(` placeholder:text-sm font-normal placeholder:text-gray-400 ring-gray-150`, className)}
           value={inputValue}
           onChange={(event) => handleChange(event)}
         />

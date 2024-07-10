@@ -42,14 +42,14 @@ export default function ProfileSettings() {
           <form>
             <Card className="mb-6 px-6">
               <div className="flex flex-col justify-center py-4 gap-y-4 text-left lg:grid lg:grid-cols-4 lg:items-center">
-                <div className="flex flex-row gap-4 items-center  justify-between lg:col-span-4">
+                <div className="flex flex-row gap-4 items-center  justify-between lg:col-span-4 ">
                   <div className="flex flex-row gap-x-4 items-center">
                     {image ? (
                       <img src={image} className="h-15 w-15 rounded-full p-1 z-0" />
                     ) : (
                       <UserRound className="h-15 w-15 rounded-full bg-blue text-white lg:p-3 p-1" />
                     )}
-                    <p className="text-base font-semibold ml-3">Harikesh Chaturvedi</p>
+                    <p className="text-sm font-semibold ml-3">Harikesh Chaturvedi</p>
                   </div>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
@@ -67,7 +67,7 @@ export default function ProfileSettings() {
                           </AlertDialogCancel>
                         </AlertDialogTitle>
                       </AlertDialogHeader>
-                      <div className="p-6">
+                      <div className="px-8">
                         <div className="flex justify-center items-center relative mt-1">
                           {image ? (
                             <img
@@ -78,8 +78,13 @@ export default function ProfileSettings() {
                           ) : (
                             <UserRound className="h-18 w-18 rounded-full bg-blue text-white p-1 z-0 absolute" />
                           )}
-                          <Label htmlFor="profilePic">
-                            <Pencil className="bg-white border border-gray-300 h-6 w-6 p-1 z-10 rounded-full mt-1 ml-1 absolute left-36 lg:left-60" />
+                          <Label htmlFor="profilePic" className="relative">
+                            {image ? (
+                              <img src={image} className="h-15 w-15 rounded-full p-1 z-0" />
+                            ) : (
+                              <UserRound className="h-15 w-15 rounded-full bg-blue text-white lg:p-3 p-1" />
+                            )}
+                            <Pencil className="bg-white border border-gray-300 h-6 w-6 p-1 z-10 rounded-full absolute bottom-1 right-1 text-gray-400" />
                             <Input
                               type="file"
                               id="profilePic"
@@ -146,13 +151,13 @@ export default function ProfileSettings() {
             <Card className="px-6">
               <div className="flex flex-col justify-center text-left lg:grid lg:grid-cols-4 lg:items-center">
                 <div className="flex flex-row gap-x-4 items-center justify-between lg:col-span-4">
-                  <div className="flex flex-row gap-x-4 items-center mt-3 mb-4">
+                  <div className="flex flex-row gap-x-4 items-center mt-6 mb-4">
                     <MapPin className="text-orange bg-pink-100 p-1 h-6 w-6 rounded-full" />
                     <p className="text-sm font-semibold">Billing Address</p>
                   </div>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
-                      <Button className="h-8 w-18 text-gray-700 bg-transparent border border-gray-700 font-normal">
+                      <Button className="h-8 w-18 text-gray-700 bg-transparent border border-gray-700 font-normal mt-7">
                         <FontAwesomeIcon icon={faPencil} style={{ color: "#77809C" }} className="mr-2" />
                         <div className="text-xs font-normal">Edit</div>
                       </Button>

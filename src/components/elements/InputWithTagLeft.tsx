@@ -11,7 +11,9 @@ const InputWithTagLeft: React.FC<TextFieldAndValueProps> = ({ title, tag, placeh
     <div className={classNameDiv}>
       <p className="text-sm font-semibold">{title}</p>
       <div className="flex flex-row items-center mt-1">
-        <p className="bg-gray-200  rounded-l rounded-r-none p-1.5 text-sm border w-12 h-9 text-center">{tag}</p>
+        <p className="bg-gray-200 border-gray-150 border-r-0  rounded-l rounded-r-none p-1.5 text-sm border w-12 h-9 text-center">
+          {tag}
+        </p>
         <div className="w-full">
           <Input type="text" className="rounded-l-none" placeholder={placeholder} />
         </div>

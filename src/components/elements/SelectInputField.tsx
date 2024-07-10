@@ -37,7 +37,7 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
       </Label>
       <div className="mt-2">
         <Select onValueChange={onSelectChange} defaultValue={defaultValue}>
-          <SelectTrigger className={cn(` ring-blue-50, text-gray-400 font-normal text-sm`, className)}>
+          <SelectTrigger className={cn(` ring-blue-50 font-normal text-sm`, className)}>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent>

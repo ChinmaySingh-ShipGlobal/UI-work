@@ -15,7 +15,7 @@ const InputWithLabel: React.FC<InputWithLabelProps> = ({ label, type, placeholde
       <Label htmlFor={label} className="text-xs inline font-normal font-poppins">
         {label} <p className="text-xs inline font-normal font-poppins">{bracketLabel}</p>
       </Label>
-      <Input type={type} placeholder={placeholder} className="mt-1" />
+      <Input type={type} placeholder={placeholder} className="mt-1 ring-gray-150 text-gray-400" />
     </div>
   );
 };

@@ -40,7 +40,7 @@ export default function ProfileSettings() {
       <div className="font-semibold m-6 text-left">
         <Card className=" border-none shadow-none">
           <form>
-            <Card className="mb-6 px-6">
+            <Card className="mb-6 px-6 border-blue-50">
               <div className="flex flex-col justify-center py-4 gap-y-4 text-left lg:grid lg:grid-cols-4 lg:items-center">
                 <div className="flex flex-row gap-4 items-center  justify-between lg:col-span-4 ">
                   <div className="flex flex-row gap-x-4 items-center">
@@ -135,10 +135,15 @@ export default function ProfileSettings() {
                         </div>
                       </div>
                       <AlertDialogFooter className="px-6 py-2 flex flex-row items-center border-t gap-4 justify-end">
-                        <AlertDialogCancel className="mb-2 md:mb-0" onClick={clearImage}>
+                        <AlertDialogCancel
+                          className="mb-2 md:mb-0 border-blue-400 text-blue-400 text-xs font-normal font-poppins"
+                          onClick={clearImage}
+                        >
                           Cancel
                         </AlertDialogCancel>
-                        <AlertDialogAction>Save</AlertDialogAction>
+                        <AlertDialogAction className="bg-blue-400 text-white text-xs font-normal font-poppins">
+                          Save
+                        </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
@@ -148,7 +153,7 @@ export default function ProfileSettings() {
                 <LabelWithText title="Mobile Number" value="+91-8829881129" />
               </div>
             </Card>
-            <Card className="px-6">
+            <Card className="px-6 border-blue-50">
               <div className="flex flex-col justify-center text-left lg:grid lg:grid-cols-4 lg:items-center">
                 <div className="flex flex-row gap-x-4 items-center justify-between lg:col-span-4">
                   <div className="flex flex-row gap-x-4 items-center mt-6 mb-4">
@@ -199,8 +204,12 @@ export default function ProfileSettings() {
                       </div>
 
                       <AlertDialogFooter className="px-6 py-2 flex flex-row items-center border-t mt-6 gap-4 justify-end">
-                        <AlertDialogCancel className="mb-2 md:mb-0">Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Save</AlertDialogAction>
+                        <AlertDialogCancel className="mb-2 md:mb-0 border-blue-400 text-blue-400 text-xs font-normal font-poppins">
+                          Cancel
+                        </AlertDialogCancel>
+                        <AlertDialogAction className="bg-blue-400 text-white text-xs font-normal font-poppins">
+                          Save
+                        </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>

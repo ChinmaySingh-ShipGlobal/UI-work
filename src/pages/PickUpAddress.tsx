@@ -5,7 +5,7 @@ import { Plus } from "lucide-react";
 export default function PickUpAddress() {
   return (
     <>
-      <Card className="border-none shadow-none lg:grid lg:grid-cols-3 m-2">
+      <Card className="border-none shadow-none lg:grid lg:grid-cols-3 m-3">
         <PickupAddressSubCard
           title="Harikesh Chaturvedi"
           address="580 Sector -52, Koyal Vihal, Gurgaon, Haryana"

@@ -39,7 +39,7 @@ const sortType = [
   { key: "fastest", value: "Fastest" },
 ];
 
-export default function Home() {
+export default function RateCalculator() {
   const [showCalculatedWeight, setShowCalculatedWeight] = useState<boolean>(false);
 
   const dispatch = useDispatch();

@@ -1,15 +1,15 @@
-import Home from "./pages/Home";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ProfileSettings from "./pages/ProfileSettings";
 import AddPickUpAddress from "./pages/AddPickUpAddress";
 import PickUpAddress from "./pages/PickUpAddress";
 import { PasswordSet } from "./pages/PasswordSet";
 import ProfilePopover from "./pages/ProfilePopover";
+import RateCalculator from "./pages/RateCalculator";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <RateCalculator />,
   },
   { path: "/profile", element: <ProfileSettings /> },
   { path: "/addPickupAddress", element: <AddPickUpAddress /> },

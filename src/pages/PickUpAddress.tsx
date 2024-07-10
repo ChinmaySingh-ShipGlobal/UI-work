@@ -30,8 +30,8 @@ export default function PickUpAddress() {
         <Card className="shadow-none m-2 p-8">
           <CardContent className="m-2 p-2">
             <div className="flex flex-col items-center justify-center">
-              <Plus className="h-10 w-10 bg-blue text-white rounded-full" />
-              <div className="text-sm mt-4 font-semibold text-blue">Add New Pickup Address</div>
+              <Plus className="h-12 w-12 bg-blue-400 text-white rounded-full" />
+              <div className="text-sm mt-3 font-medium text-blue-400">Add New Pickup Address</div>
             </div>
           </CardContent>
         </Card>

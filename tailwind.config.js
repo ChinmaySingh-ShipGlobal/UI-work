@@ -31,6 +31,7 @@ module.exports = {
         50: "#EBF0FC",
         100: "#E9EFFF",
         300: "#ADC8FF",
+        400:"#1F499E",
         700: "#4769AF",
         light:"#f9f8ff"
       },
@@ -43,7 +44,7 @@ module.exports = {
       },
       red: "#DD1717",
       green: "#007A48",
-      purple: "#6840C4",
+      purple: "#6840C5",
       pink: { DEFAULT: "#FC5353", 100: "#FFF7E9" },
       gray: {
         50: "#FAFAFA",

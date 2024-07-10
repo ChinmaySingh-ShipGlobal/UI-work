@@ -71,7 +71,7 @@ export default function Home() {
           <p className="m-2 p-2 text-2xl font-medium font-poppins">Rate Calculator</p>
           <div className="bg-white">
             <form>
-              <Card className="lg:w-2/3">
+              <Card className="lg:w-2/3 border-none shadow-none">
                 <CardContent>
                   {/* Rate Calculator Input Fields */}
                   <div className="grid grid-cols-1 gap-2 text-left lg:grid-cols-4 max-w-sm m-auto lg:max-w-full">

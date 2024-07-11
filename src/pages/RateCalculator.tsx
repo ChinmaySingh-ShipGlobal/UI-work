@@ -44,7 +44,11 @@ const sortType = [
 ];
 
 const formSchema = z.object({
-  pincode: z.coerce.number({ message: "Pincode must be in digits" }),
+  country: z.string({ message: "Select Country" }),
+  pincode: z.coerce
+    .number({ message: "Pincode must be in digits" })
+    .min(100000, { message: "Pincode must be 6 digits" })
+    .max(999999, { message: "Pincode must be 6 digits" }),
   weight: z.coerce.number({ message: "Weight must be in digits" }),
   length: z.coerce.number({ message: "Length must be in digits" }),
   width: z.coerce.number({ message: "Width must be in digits" }),
@@ -57,6 +61,7 @@ export default function RateCalculator() {
   const dispatch = useDispatch();
 
   const handleSelectCountry = (selectedCountry: string) => {
+    form.setValue("country", selectedCountry);
     dispatch(updateCountry(selectedCountry));
   };
 
@@ -110,7 +115,7 @@ export default function RateCalculator() {
                             />
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 gap-x-4 text-left lg:flex lg:flex-row lg:justify-between max-w-sm m-auto lg:mt-4 lg:max-w-full">
+                        <div className="flex-1 flex-col gap-x-4 text-left lg:flex lg:flex-row lg:justify-between max-w-sm m-auto lg:mt-4 lg:max-w-full">
                           <InputwithTagRightTest
                             label="Actual Weight"
                             type="text"
@@ -267,7 +272,7 @@ export default function RateCalculator() {
                 </CardContent>
               </Card>
               {/* Right Tab */}
-              <Card className="invisible lg:visible lg:w-1/3 shadow-none">
+              <Card className="hidden lg:w-1/3 lg:block shadow-none">
                 <CardContent>
                   <div className="px-2">
                     <div className="w-full h-full m-4 flex flex-col items-center justify-center">

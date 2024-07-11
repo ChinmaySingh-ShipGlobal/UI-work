@@ -23,7 +23,7 @@ export default function InputwithTagRightTest({
           <div className={divClass}>
             <Label className="font-normal text-xs font-poppins">{label}</Label>
             <div className="flex flex-row items-center">
-              <FormControl>
+              <FormControl className="w-full">
                 <div className={cn(inputTagClass, "flex-row flex items-center")}>
                   <Input
                     type={type}

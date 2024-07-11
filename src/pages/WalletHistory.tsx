@@ -113,11 +113,11 @@ export default function WalletHistory() {
                 <CloudDownload className="h-5 w-5" />
                 <p className="text-sm font-normal hidden lg:block">Export</p>
               </Button>
-              <Button disabled className=" bg-blue-150 text-black border border-gray-300 gap-x-2 hidden lg:block">
-                <p className="text-xs text-gray-800 font-normal">
-                  Wallet Balance <span className="text-xs font-semibold text-black inline">₹ 3500.00</span>
-                </p>
-              </Button>
+              <div className=" bg-blue-150 px-2 rounded-sm text-black  gap-x-2 hidden lg:block">
+                <i className="text-xs text-gray-800 font-normal mt-1">
+                  Wallet Balance <i className="text-xs font-semibold text-black inline">₹ 3500.00</i>
+                </i>
+              </div>
 
               <AlertDialog>
                 <AlertDialogTrigger asChild>

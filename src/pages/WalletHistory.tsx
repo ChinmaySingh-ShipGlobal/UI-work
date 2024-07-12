@@ -154,6 +154,7 @@ const transactions = [
     status: "Completed",
   },
 ];
+
 const amountFormSchema = z.object({
   amount: z.coerce
     .number({ message: "Amount must be in digits" })
@@ -170,20 +171,19 @@ export default function WalletHistory() {
     values.amount = inputAmount;
     console.log(values);
   }
-
   const [inputAmount, setinputAmount] = useState(200);
 
   return (
     <>
-      <div className="bg-gray-100 font-semibold text-2xl m-2 text-left px-4">
-        <div className="flex flex-col lg:flex-row justify-center lg:justify-between lg:items-center my-4">
+      <div className="bg-gray-100 font-semibold text-2xl text-left px-4 w-full h-screen">
+        <div className="flex flex-col lg:flex-row justify-center lg:justify-between lg:items-center mb-4">
           <p className="m-2 p-2 text-2xl font-medium font-poppins">Wallet</p>
           <div className="flex flex-row gap-x-4 mt-2 justify-end mr-4">
-            <Button className="flex flex-row bg-transparent text-black border border-gray-300 gap-x-2">
+            <Button className="flex flex-row hover:bg-transparent bg-transparent text-black border border-gray-300 gap-x-2">
               <SlidersHorizontal className="h-5 w-5" />
               <p className="text-sm font-normal hidden lg:block">Filters</p>
             </Button>
-            <Button className="flex flex-row bg-transparent text-black border border-gray-300 gap-x-2">
+            <Button className="flex flex-row  hover:bg-transparent  bg-transparent text-black border border-gray-300 gap-x-2">
               <CloudDownload className="h-5 w-5" />
               <p className="text-sm font-normal hidden lg:block">Export</p>
             </Button>
@@ -224,8 +224,7 @@ export default function WalletHistory() {
                                 <Label className="text-xs font-medium font-poppins text-black">
                                   Enter Recharge Amount
                                 </Label>
-
-                                <FormControl>
+                                <FormControl className="mt-1">
                                   <div>
                                     <div className="flex flex-row items-center border justify-center border-gray-150 px-3 text-black">
                                       <div className="h-3 w-3">
@@ -283,9 +282,48 @@ export default function WalletHistory() {
                         </Button>
                       </div>
                       <div className="flex flex-row justify-center items-center gap-x-4 mt-8 mb-4">
-                        <Button type="submit" className="bg-blue-400 text-white text-xs font-medium font-poppins">
-                          Proceed To Payment
-                        </Button>
+                        {/* ------------------------------------------------------------------------ */}
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button className="flex flex-row bg-blue-400 text-white gap-x-2">
+                              <p className="text-sm font-normal">Proceed to Payment</p>
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent className="p-0">
+                            <AlertDialogTitle></AlertDialogTitle>
+                            <AlertDialogDescription>
+                              <Form {...amountForm}>
+                                <form onSubmit={amountForm.handleSubmit(onSubmit)}>
+                                  <div className="flex justify-between items-center border-b border-b-white-100 px-6 py-2">
+                                    <p className="font-semibold text-base text-black">Transaction Details</p>
+                                    <AlertDialogCancel className="mt-0 border text-gray-800 border-transparent hover:bg-transparent hover:text-gray-800 text-xs font-normal font-poppins bg-transparent">
+                                      <X />
+                                    </AlertDialogCancel>
+                                  </div>
+                                  <div className="flex flex-col items-center justify-center text-gray-800 font-normal text-2xl mt-8">
+                                    Transaction Amount
+                                  </div>
+                                  <div className="flex flex-row gap-x-3 items-center justify-center text-black font-normal text-2xl mt-6">
+                                    ₹ {inputAmount}
+                                    <Badge className="text-green bg-green-100  border-green">Completed</Badge>
+                                  </div>
+                                  <div className="flex flex-row items-center justify-center text-gray-800 font-normal text-sm mt-8">
+                                    Date added :
+                                    <span className="text-black font-normal text-sm ml-2">06-Jun-24 09:25:10 am</span>
+                                  </div>
+                                  <div className="flex flex-row justify-center items-center gap-x-4 mt-8 mb-4">
+                                    <Button
+                                      type="submit"
+                                      className="bg-blue-400 text-white text-xs font-medium font-poppins"
+                                    >
+                                      View Order Details
+                                    </Button>
+                                  </div>
+                                </form>
+                              </Form>
+                            </AlertDialogDescription>
+                          </AlertDialogContent>
+                        </AlertDialog>
                       </div>
                     </form>
                   </Form>
@@ -303,7 +341,7 @@ export default function WalletHistory() {
               </TabsList>
             </span>
             <TabsContent value="transactionHistory">
-              <div className="bg-white lg:flex lg:flex-row pt-2 rounded-sm">
+              <div className="bg-white lg:flex lg:flex-row p-2 rounded-sm">
                 <Card className="shadow-none w-full">
                   <CardContent className="px-0 w-full">
                     {/* Transactions Table */}
@@ -313,7 +351,7 @@ export default function WalletHistory() {
                         <TableRow className="bg-gray-100 text-gray-800 rounded-xl text-xs font-medium font-poppins px-2">
                           <TableHead className="py-2 text-xs font-medium font-poppins ">Transaction Date</TableHead>
                           <TableHead className="py-2 text-xs font-medium font-poppins ">Transaction Type</TableHead>
-                          <TableHead className="py-2 text-xs font-medium font-poppins ">Description</TableHead>
+                          <TableHead className="py-2 text-xs font-medium font-poppin">Description</TableHead>
                           <TableHead className="py-2 text-xs font-medium font-poppins ">Amount</TableHead>
                           <TableHead className="py-2 text-xs font-medium font-poppins ">Transaction Status</TableHead>
                           <TableHead className="py-2 text-xs font-medium font-poppins ">View Details</TableHead>
@@ -354,7 +392,7 @@ export default function WalletHistory() {
               </div>
             </TabsContent>
             <TabsContent value="rechargeHistory">
-              <div className="bg-white lg:flex lg:flex-row pt-2">
+              <div className="bg-white lg:flex lg:flex-row p-2 rounded-sm">
                 <Card className="shadow-none w-full">
                   <CardContent className="px-0 w-full">
                     {/* recharges Table */}

@@ -296,10 +296,12 @@ export default function WalletHistory() {
         </div>
         <div className="text-left">
           <Tabs defaultValue="rechargeHistory" className="w-full mt-4">
-            <TabsList className=" active:text-black text-gray-800 font-medium text-xs w-full items-start justify-start">
-              <TabsTrigger value="transactionHistory">Transaction History</TabsTrigger>
-              <TabsTrigger value="rechargeHistory">Recharge History</TabsTrigger>
-            </TabsList>
+            <span className="border-b border-blue-200 pb-1">
+              <TabsList className="active:text-black text-gray-800 font-medium text-xs w-full items-start justify-start">
+                <TabsTrigger value="transactionHistory">Transaction History</TabsTrigger>
+                <TabsTrigger value="rechargeHistory">Recharge History</TabsTrigger>
+              </TabsList>
+            </span>
             <TabsContent value="transactionHistory">
               <div className="bg-white lg:flex lg:flex-row pt-2 rounded-sm">
                 <Card className="shadow-none w-full">

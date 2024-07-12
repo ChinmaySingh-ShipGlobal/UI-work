@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useDispatch } from "react-redux";
-import { updateCountry, updateSortOrder } from "@/redux/actions";
+import { updateSortOrder } from "@/redux/actions";
 import SelectInputField from "@/components/elements/SelectInputField";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -12,9 +12,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Box, Info } from "lucide-react";
 import * as z from "zod"; // Import Zod
 import { Form } from "@/components/ui/form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup } from "@/components/ui/select";
 import InputFieldTest from "@/components/elements/InputFieldTest";
 import InputwithTagRightTest from "@/components/elements/InputwithTagRightTest";
 import { Badge } from "@/components/ui/badge";
+import { FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { Label } from "@/components/ui/label";
 
 const selectCountry = [
   { key: "usa", value: "USA" },
@@ -60,12 +63,6 @@ export default function RateCalculator() {
   const [showCalculatedWeight, setShowCalculatedWeight] = useState<boolean>(false);
 
   const dispatch = useDispatch();
-
-  const handleSelectCountry = (selectedCountry: string) => {
-    form.setValue("country", selectedCountry);
-    dispatch(updateCountry(selectedCountry));
-  };
-
   const handleSelectSortOrder = (sortOrder: string) => {
     dispatch(updateSortOrder(sortOrder));
   };
@@ -97,13 +94,36 @@ export default function RateCalculator() {
                       <form onSubmit={form.handleSubmit(onSubmit)}>
                         <div className="grid grid-cols-1 gap-x-2 text-left lg:grid-cols-4 max-w-sm m-auto lg:max-w-full">
                           <div className="lg:col-span-2 lg:mr-4 lg:gap-2 justify-center items-center ">
-                            <SelectInputField
+                            <FormField
+                              control={form.control}
                               name="country"
-                              label="Destination Country"
-                              placeholder="Select"
-                              data={selectCountry}
-                              required
-                              setSelectValueObj={handleSelectCountry}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <div>
+                                    <Label htmlFor="country" className="font-normal text-xs">
+                                      Destination Country
+                                    </Label>
+                                    <div className="mt-2">
+                                      <Select onValueChange={field.onChange}>
+                                        <SelectTrigger className="ring-blue-50 font-normal text-sm h-9">
+                                          <SelectValue placeholder="Select" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                          <SelectGroup>
+                                            {selectCountry.map((item) => (
+                                              <SelectItem value={item.key} key={item.key}>
+                                                {item.value}
+                                              </SelectItem>
+                                            ))}
+                                          </SelectGroup>
+                                        </SelectContent>
+                                      </Select>
+                                    </div>
+                                    <FormDescription></FormDescription>
+                                    <FormMessage />
+                                  </div>
+                                </FormItem>
+                              )}
                             />
                           </div>
                           <div className="lg:col-span-2 lg:mt-2 lg:gap-2 lg:ml-4">

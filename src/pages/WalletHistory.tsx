@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { CornerDownRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const recharges = [
   {
@@ -167,6 +168,7 @@ export default function WalletHistory() {
     resolver: zodResolver(amountFormSchema),
   });
 
+  const navigate = useNavigate();
   function onSubmit(values: z.infer<typeof amountFormSchema>) {
     values.amount = inputAmount;
     console.log(values);
@@ -315,6 +317,7 @@ export default function WalletHistory() {
                                     <Button
                                       type="submit"
                                       className="bg-blue-400 text-white text-xs font-medium font-poppins"
+                                      onClick={() => navigate("/orderDetails")}
                                     >
                                       View Order Details
                                     </Button>
@@ -341,7 +344,7 @@ export default function WalletHistory() {
               </TabsList>
             </span>
             <TabsContent value="transactionHistory">
-              <div className="bg-white lg:flex lg:flex-row p-2 rounded-sm">
+              <div className="bg-white lg:flex lg:flex-row p-4 rounded-sm">
                 <Card className="shadow-none w-full">
                   <CardContent className="px-0 w-full">
                     {/* Transactions Table */}

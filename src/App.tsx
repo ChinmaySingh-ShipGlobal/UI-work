@@ -6,6 +6,7 @@ import { PasswordSet } from "./pages/PasswordSet";
 import ProfilePopover from "./pages/ProfilePopover";
 import RateCalculator from "./pages/RateCalculator";
 import WalletHistory from "./pages/WalletHistory";
+import OrderDetails from "./pages/OrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
   { path: "/setPassword", element: <PasswordSet /> },
   { path: "/profilePopover", element: <ProfilePopover /> },
   { path: "/walletHistory", element: <WalletHistory /> },
+  { path: "/orderDetails", element: <OrderDetails /> },
 ]);
 function App() {
   return <RouterProvider router={router} />;

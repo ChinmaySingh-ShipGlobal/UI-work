@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { SlidersHorizontal, CloudDownload, Wallet, IndianRupee, Square, X } from "lucide-react";
+import { SlidersHorizontal, CloudDownload, Wallet, IndianRupee, WalletCards, X } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -18,6 +18,8 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } 
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import { CornerDownRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
 
 const recharges = [
   {
@@ -155,7 +157,8 @@ const transactions = [
 const amountFormSchema = z.object({
   amount: z.coerce
     .number({ message: "Amount must be in digits" })
-    .min(200, { message: "Enter amount not less than 200" }),
+    .min(200, { message: "Enter amount not less than 200" })
+    .default(200),
 });
 
 export default function WalletHistory() {
@@ -164,11 +167,15 @@ export default function WalletHistory() {
   });
 
   function onSubmit(values: z.infer<typeof amountFormSchema>) {
+    values.amount = inputAmount;
     console.log(values);
   }
+
+  const [inputAmount, setinputAmount] = useState(200);
+
   return (
     <>
-      <div className="bg-gray-100 font-semibold text-2xl m-2 text-left ">
+      <div className="bg-gray-100 font-semibold text-2xl m-2 text-left px-4">
         <div className="flex flex-col lg:flex-row justify-center lg:justify-between lg:items-center my-4">
           <p className="m-2 p-2 text-2xl font-medium font-poppins">Wallet</p>
           <div className="flex flex-row gap-x-4 mt-2 justify-end mr-4">
@@ -211,25 +218,30 @@ export default function WalletHistory() {
                         <FormField
                           control={amountForm.control}
                           name="amount"
-                          render={({ field }) => (
+                          render={({}) => (
                             <FormItem>
                               <div>
-                                <Label className="text-xs font-medium font-poppins">Enter Recharge Amount</Label>
+                                <Label className="text-xs font-medium font-poppins text-black">
+                                  Enter Recharge Amount
+                                </Label>
 
                                 <FormControl>
                                   <div>
-                                    <div className="flex flex-row items-center border justify-center border-gray-150 px-3">
+                                    <div className="flex flex-row items-center border justify-center border-gray-150 px-3 text-black">
                                       <div className="h-3 w-3">
                                         <IndianRupee className="h-3 w-3" />
                                       </div>
                                       <Input
                                         type="text"
-                                        {...field}
+                                        value={inputAmount}
+                                        onChange={(e) => setinputAmount(parseInt(e.target.value) || 0)}
                                         placeholder="Type amount ..."
-                                        className="placeholder:text-sm px-0 font-normal placeholder:text-gray-400 ring-transparent border-transparent "
-                                        defaultValue={200}
+                                        className="placeholder:text-sm px-0 font-normal placeholder:text-gray-400 ring-transparent border-transparent"
                                       />
-                                      <Button className="text-xs font-medium bg-transparent p-0 text-blue-400">
+                                      <Button
+                                        className="text-xs font-medium bg-transparent p-0 text-blue-400 hover:bg-transparent"
+                                        onClick={() => setinputAmount(inputAmount + 500)}
+                                      >
                                         + ₹ 500.00
                                       </Button>
                                     </div>
@@ -246,8 +258,8 @@ export default function WalletHistory() {
                           )}
                         />
 
-                        <p className="text-sm font-semibold mt-8">Select Payment Method</p>
-                        <Button className="bg-transparent w-full h-14 hover:bg-transparent border mt-2 border-gray-350">
+                        <p className="text-sm font-semibold mt-8 mb-1 text-black">Select Payment Method</p>
+                        <Button className="bg-transparent w-full h-16 hover:bg-transparent border mt-2 border-gray-350">
                           <div className="flex w-full justify-between items-center py-3">
                             <div className="text-left">
                               <p className="text-sm font-medium text-black">Cashfree Online Payment</p>
@@ -255,10 +267,10 @@ export default function WalletHistory() {
                                 Debit Card, Credit Card, Net Banking, UPI
                               </p>
                             </div>
-                            <Square className="text-black h-4 w-4" />
+                            <WalletCards className="text-black h-4 w-4" />
                           </div>
                         </Button>
-                        <Button className="bg-transparent w-full h-14 hover:bg-transparent border mt-4 border-gray-350">
+                        <Button className="bg-transparent w-full h-16 hover:bg-transparent border mt-4 border-gray-350">
                           <div className="flex w-full justify-between items-center py-3">
                             <div className="text-left">
                               <p className="text-sm font-medium text-black">Cashfree Online Payment</p>
@@ -266,7 +278,7 @@ export default function WalletHistory() {
                                 Debit Card, Credit Card, Net Banking, UPI
                               </p>
                             </div>
-                            <Square className="text-black h-4 w-4" />
+                            <WalletCards className="text-black h-4 w-4" />
                           </div>
                         </Button>
                       </div>
@@ -289,7 +301,7 @@ export default function WalletHistory() {
               <TabsTrigger value="rechargeHistory">Recharge History</TabsTrigger>
             </TabsList>
             <TabsContent value="transactionHistory">
-              <div className="bg-white lg:flex lg:flex-row pt-2">
+              <div className="bg-white lg:flex lg:flex-row pt-2 rounded-sm">
                 <Card className="shadow-none w-full">
                   <CardContent className="px-0 w-full">
                     {/* Transactions Table */}
@@ -318,17 +330,15 @@ export default function WalletHistory() {
                             </TableCell>
                             <TableCell className="py-2">{transaction.amount}</TableCell>
                             <TableCell>
-                              <div
-                                className={`rounded-full px-0 inline-block
-                                        ${
-                                          transaction.status === "Failed"
-                                            ? "text-red bg-pink-200 border border-red"
-                                            : "text-green bg-green-100 border border-green"
-                                        }
-                                      `}
+                              <Badge
+                                className={
+                                  transaction.status === "Failed"
+                                    ? "text-red bg-pink-200 border-red"
+                                    : "text-green bg-green-100  border-green"
+                                }
                               >
-                                <p className="px-2">{transaction.status}</p>
-                              </div>
+                                {transaction.status}
+                              </Badge>
                             </TableCell>
                             <TableCell className="py-2">
                               <CornerDownRight className="text-gray-800" />
@@ -364,17 +374,15 @@ export default function WalletHistory() {
                             <TableCell className="py-2 flex items-center mt-2">{recharge.rechargeDate}</TableCell>
                             <TableCell className="py-2 font-medium">{recharge.rechargeAmount}</TableCell>
                             <TableCell>
-                              <div
-                                className={`rounded-full px-0 inline-block
-                                        ${
-                                          recharge.status === "Failed"
-                                            ? "text-red bg-pink-200 border border-red"
-                                            : "text-green bg-green-100 border border-green"
-                                        }
-                                      `}
+                              <Badge
+                                className={
+                                  recharge.status === "Failed"
+                                    ? "text-red bg-pink-200 border-red"
+                                    : "text-green bg-green-100  border-green"
+                                }
                               >
-                                <p className="px-2">{recharge.status}</p>
-                              </div>
+                                {recharge.status}
+                              </Badge>
                             </TableCell>
                             <TableCell className="py-2">{recharge.paymentGateway}</TableCell>
                           </TableRow>

@@ -14,6 +14,7 @@ import * as z from "zod"; // Import Zod
 import { Form } from "@/components/ui/form";
 import InputFieldTest from "@/components/elements/InputFieldTest";
 import InputwithTagRightTest from "@/components/elements/InputwithTagRightTest";
+import { Badge } from "@/components/ui/badge";
 
 const selectCountry = [
   { key: "usa", value: "USA" },
@@ -243,19 +244,15 @@ export default function RateCalculator() {
                                 <TableCell className="py-2">{partner.time}</TableCell>
                                 <TableCell className="py-2">{partner.rate}</TableCell>
                                 <TableCell>
-                                  <div className={`text-center`}>
-                                    <div
-                                      className={`rounded-sm 
-                                        ${
-                                          partner.speed === "Fastest"
-                                            ? "text-orange-dark bg-orange-light"
-                                            : "text-purple bg-blue-light"
-                                        }
-                                      `}
-                                    >
-                                      {partner.speed}
-                                    </div>
-                                  </div>
+                                  <Badge
+                                    className={
+                                      partner.speed === "Fastest"
+                                        ? "text-orange-dark bg-orange-light"
+                                        : "text-purple bg-blue-light"
+                                    }
+                                  >
+                                    {partner.speed}
+                                  </Badge>
                                 </TableCell>
                                 <TableCell className="py-2 m-auto">
                                   <Button className="bg-blue-400 text-white text-xs font-medium font-poppins py-1 rounded-md">

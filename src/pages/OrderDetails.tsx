@@ -30,18 +30,22 @@ export default function OrderDetails() {
       <div className="lg:flex lg:flex-row lg:gap-x-3 bg-gray-50 p-4">
         <div className="lg:w-2/3">
           <Card className="mb-2 px-6 border-blue-50  shadow-none">
-            <div className="flex flex-col justify-center py-4 gap-y-4 text-left lg:grid lg:grid-cols-5 lg:items-center">
-              <div className="flex flex-row gap-4 items-center  justify-between lg:col-span-5 ">
+            <div className="flex flex-col justify-center py-4 gap-y-4 text-left md:grid md:grid-cols-5 md:items-center">
+              <div className="flex flex-row gap-4 items-center  justify-between md:col-span-5 ">
                 <div className="flex flex-row gap-x-2 items-center">
                   <Box className="h-7 w-7 rounded-full bg-blue-50 text-blue-400 p-1" />
                   <p className="text-sm font-semibold">Order Details</p>
                 </div>
               </div>
-              <LabelWithText title="Order Created On" value="12 June, 2024" />
-              <LabelWithText title="Dead Wt" value="10 kg" />
-              <LabelWithText title="Dimensions (in cm)" value="12 x 13 x 15" />
-              <LabelWithText title="Volumetric Wt" value="12 kg" />
-              <LabelWithText title="Billed Wt" value="12 kg" />
+              <div className="grid grid-cols-2 md:col-span-2">
+                <LabelWithText title="Order Created On" value="12 June, 2024" />
+                <LabelWithText title="Dimensions (in cm)" value="12 x 13 x 15" />
+              </div>
+              <div className="grid grid-cols-3 md:col-span-3">
+                <LabelWithText title="Dead Wt" value="10 kg" />
+                <LabelWithText title="Volumetric Wt" value="12 kg" />
+                <LabelWithText title="Billed Wt" value="12 kg" />
+              </div>
             </div>
           </Card>
           <Card className=" border-blue-50 shadow-none mb-2">

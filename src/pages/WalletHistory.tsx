@@ -17,8 +17,9 @@ import {
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
+import { CornerDownRight } from "lucide-react";
 
-const partners = [
+const recharges = [
   {
     transactionCode: "SG2425535353",
     rechargeDate: "29 Mar, 2024 ; 10:30 am",
@@ -82,6 +83,73 @@ const partners = [
 
     status: "Completed",
     paymentGateway: "Paytm",
+  },
+];
+
+const transactions = [
+  {
+    transactionDate: "29 Mar, 2024 ; 10:30 am",
+    transactionType: "SG2425535353",
+    description: "Wallet deduction for order: ",
+    subDescription: "SG235367465",
+    amount: "₹3500.00",
+    status: "Failed",
+  },
+  {
+    transactionDate: "29 Mar, 2024 ; 10:30 am",
+    transactionType: "SG2425535353",
+    description: "Wallet deduction for order: ",
+    subDescription: "SG235367465",
+    amount: "₹3500.00",
+    status: "Completed",
+  },
+  {
+    transactionDate: "29 Mar, 2024 ; 10:30 am",
+    transactionType: "SG2425535353",
+    description: "Wallet deduction for order: ",
+    subDescription: "SG235367465",
+    amount: "₹3500.00",
+    status: "Completed",
+  },
+  {
+    transactionDate: "29 Mar, 2024 ; 10:30 am",
+    transactionType: "SG2425535353",
+    description: "Wallet deduction for order: ",
+    subDescription: "SG235367465",
+    amount: "₹3500.00",
+    status: "Completed",
+  },
+  {
+    transactionDate: "29 Mar, 2024 ; 10:30 am",
+    transactionType: "SG2425535353",
+    description: "Wallet deduction for order: ",
+    subDescription: "SG235367465",
+    amount: "₹3500.00",
+    status: "Failed",
+  },
+  {
+    transactionDate: "29 Mar, 2024 ; 10:30 am",
+    transactionType: "SG2425535353",
+    description: "Wallet deduction for order: ",
+    subDescription: "SG235367465",
+    amount: "₹3500.00",
+    status: "Completed",
+  },
+  {
+    transactionDate: "29 Mar, 2024 ; 10:30 am",
+    transactionType: "SG2425535353",
+    description: "Wallet deduction for order: ",
+    subDescription: "SG235367465",
+    amount: "₹3500.00",
+    status: "Failed",
+  },
+  {
+    transactionDate: "29 Mar, 2024 ; 10:30 am",
+    transactionType: "SG2425535353",
+    description: "Wallet deduction for order: ",
+    subDescription: "SG235367465",
+    amount: "₹3500.00",
+    status: "Completed",
   },
 ];
 const amountFormSchema = z.object({
@@ -220,12 +288,64 @@ export default function WalletHistory() {
               <TabsTrigger value="transactionHistory">Transaction History</TabsTrigger>
               <TabsTrigger value="rechargeHistory">Recharge History</TabsTrigger>
             </TabsList>
-            <TabsContent value="transactionHistory">Make changes to your account here.</TabsContent>
+            <TabsContent value="transactionHistory">
+              <div className="bg-white lg:flex lg:flex-row pt-2">
+                <Card className="shadow-none w-full">
+                  <CardContent className="px-0 w-full">
+                    {/* Transactions Table */}
+
+                    <Table className="w-full">
+                      <TableHeader>
+                        <TableRow className="bg-gray-100 text-gray-800 rounded-xl text-xs font-medium font-poppins px-2">
+                          <TableHead className="py-2 text-xs font-medium font-poppins ">Transaction Date</TableHead>
+                          <TableHead className="py-2 text-xs font-medium font-poppins ">Transaction Type</TableHead>
+                          <TableHead className="py-2 text-xs font-medium font-poppins ">Description</TableHead>
+                          <TableHead className="py-2 text-xs font-medium font-poppins ">Amount</TableHead>
+                          <TableHead className="py-2 text-xs font-medium font-poppins ">Transaction Status</TableHead>
+                          <TableHead className="py-2 text-xs font-medium font-poppins ">View Details</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody className="text-left">
+                        {transactions.map((transaction, index) => (
+                          <TableRow key={index} className="border border-blue-50 text-xs font-normal space-y-2 ">
+                            <TableCell className="py-2 px-6">{transaction.transactionDate}</TableCell>
+                            <TableCell className="py-2 flex items-center mt-2 text-gray-800">
+                              {transaction.transactionType}
+                            </TableCell>
+                            <TableCell className="py-2 font-medium  text-gray-800">
+                              {transaction.description}
+                              <p className="inline font-medium text-xs text-black">{transaction.subDescription}</p>
+                            </TableCell>
+                            <TableCell className="py-2">{transaction.amount}</TableCell>
+                            <TableCell>
+                              <div
+                                className={`rounded-full px-0 inline-block
+                                        ${
+                                          transaction.status === "Failed"
+                                            ? "text-red bg-pink-200 border border-red"
+                                            : "text-green bg-green-100 border border-green"
+                                        }
+                                      `}
+                              >
+                                <p className="px-2">{transaction.status}</p>
+                              </div>
+                            </TableCell>
+                            <TableCell className="py-2">
+                              <CornerDownRight className="text-gray-800" />
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
             <TabsContent value="rechargeHistory">
               <div className="bg-white lg:flex lg:flex-row pt-2">
                 <Card className="shadow-none w-full">
                   <CardContent className="px-0 w-full">
-                    {/* Partners Table */}
+                    {/* recharges Table */}
 
                     <Table className="w-full">
                       <TableHeader>
@@ -238,25 +358,25 @@ export default function WalletHistory() {
                         </TableRow>
                       </TableHeader>
                       <TableBody className="text-left">
-                        {partners.map((partner, index) => (
+                        {recharges.map((recharge, index) => (
                           <TableRow key={index} className="border border-blue-50 text-xs font-normal space-y-2 ">
-                            <TableCell className="py-2 px-6">{partner.transactionCode}</TableCell>
-                            <TableCell className="py-2 flex items-center mt-2">{partner.rechargeDate}</TableCell>
-                            <TableCell className="py-2 font-medium">{partner.rechargeAmount}</TableCell>
+                            <TableCell className="py-2 px-6">{recharge.transactionCode}</TableCell>
+                            <TableCell className="py-2 flex items-center mt-2">{recharge.rechargeDate}</TableCell>
+                            <TableCell className="py-2 font-medium">{recharge.rechargeAmount}</TableCell>
                             <TableCell>
                               <div
                                 className={`rounded-full px-0 inline-block
                                         ${
-                                          partner.status === "Failed"
+                                          recharge.status === "Failed"
                                             ? "text-red bg-pink-200 border border-red"
                                             : "text-green bg-green-100 border border-green"
                                         }
                                       `}
                               >
-                                <p className="px-2">{partner.status}</p>
+                                <p className="px-2">{recharge.status}</p>
                               </div>
                             </TableCell>
-                            <TableCell className="py-2">{partner.paymentGateway}</TableCell>
+                            <TableCell className="py-2">{recharge.paymentGateway}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>

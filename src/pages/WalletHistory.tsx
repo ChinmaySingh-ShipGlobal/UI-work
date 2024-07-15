@@ -176,6 +176,28 @@ export default function WalletHistory() {
   const [inputAmount, setinputAmount] = useState(200);
   const [rechargeWalletDialog, setRechargeWalletDialog] = useState(false);
   const [proceedPaymentDialog, setProceedPaymentDialog] = useState(false);
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const date = today.getDate();
+  const time = today.toLocaleTimeString();
+  const now = `${date < 10 ? `0${date}` : date}-${monthNames[month - 1]}-${year % 100}`;
+
   return (
     <>
       <div className="bg-gray-100 font-semibold text-2xl text-left px-4 w-full h-screen">
@@ -247,7 +269,7 @@ export default function WalletHistory() {
                                         className="text-xs font-medium bg-transparent p-0 text-blue-400 hover:bg-transparent"
                                         onClick={() => setinputAmount(inputAmount + 500)}
                                       >
-                                        + ₹ 500.00
+                                        + ₹ <span className="underline">500.00</span>
                                       </Button>
                                     </div>
                                     <p className="text-gray-800 text-xs font-normal mt-1">
@@ -325,7 +347,10 @@ export default function WalletHistory() {
                         <Badge className="text-green bg-green-100  border-green">Completed</Badge>
                       </div>
                       <div className="flex flex-row items-center justify-center text-gray-800 font-normal text-sm mt-8">
-                        Date added :<span className="text-black font-normal text-sm ml-2">06-Jun-24 09:25:10 am</span>
+                        Date added :
+                        <span className="text-black font-normal text-sm ml-2">
+                          {now} {time}
+                        </span>
                       </div>
                       <div className="flex flex-row justify-center items-center gap-x-4 mt-8 mb-4">
                         <Button

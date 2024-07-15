@@ -174,7 +174,8 @@ export default function WalletHistory() {
     console.log(values);
   }
   const [inputAmount, setinputAmount] = useState(200);
-
+  const [rechargeWalletDialog, setRechargeWalletDialog] = useState(false);
+  const [proceedPaymentDialog, setProceedPaymentDialog] = useState(false);
   return (
     <>
       <div className="bg-gray-100 font-semibold text-2xl text-left px-4 w-full h-screen">
@@ -195,9 +196,12 @@ export default function WalletHistory() {
               </i>
             </div>
 
-            <AlertDialog>
+            <AlertDialog open={rechargeWalletDialog}>
               <AlertDialogTrigger asChild>
-                <Button className="flex flex-row bg-blue-400 text-white gap-x-2">
+                <Button
+                  className="flex flex-row bg-blue-400 text-white gap-x-2"
+                  onClick={() => setRechargeWalletDialog(true)}
+                >
                   <Wallet className="h-5 w-5" />
                   <p className="text-sm font-normal">Recharge Wallet</p>
                 </Button>
@@ -209,7 +213,7 @@ export default function WalletHistory() {
                     <form onSubmit={amountForm.handleSubmit(onSubmit)}>
                       <div className="flex justify-end">
                         <AlertDialogCancel className="mt-0 border text-gray-800 border-transparent hover:bg-transparent hover:text-gray-800 text-xs font-normal font-poppins bg-transparent">
-                          <X />
+                          <X onClick={() => setRechargeWalletDialog(false)} />
                         </AlertDialogCancel>
                       </div>
                       <div className="flex flex-col items-center justify-center text-black">
@@ -285,48 +289,52 @@ export default function WalletHistory() {
                       </div>
                       <div className="flex flex-row justify-center items-center gap-x-4 mt-8 mb-4">
                         {/* ------------------------------------------------------------------------ */}
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button className="flex flex-row bg-blue-400 text-white gap-x-2">
-                              <p className="text-sm font-normal">Proceed to Payment</p>
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent className="p-0">
-                            <AlertDialogTitle></AlertDialogTitle>
-                            <AlertDialogDescription>
-                              <Form {...amountForm}>
-                                <form onSubmit={amountForm.handleSubmit(onSubmit)}>
-                                  <div className="flex justify-between items-center border-b border-b-white-100 px-6 py-2">
-                                    <p className="font-semibold text-base text-black">Transaction Details</p>
-                                    <AlertDialogCancel className="mt-0 border text-gray-800 border-transparent hover:bg-transparent hover:text-gray-800 text-xs font-normal font-poppins bg-transparent">
-                                      <X />
-                                    </AlertDialogCancel>
-                                  </div>
-                                  <div className="flex flex-col items-center justify-center text-gray-800 font-normal text-2xl mt-8">
-                                    Transaction Amount
-                                  </div>
-                                  <div className="flex flex-row gap-x-3 items-center justify-center text-black font-normal text-2xl mt-6">
-                                    ₹ {inputAmount}
-                                    <Badge className="text-green bg-green-100  border-green">Completed</Badge>
-                                  </div>
-                                  <div className="flex flex-row items-center justify-center text-gray-800 font-normal text-sm mt-8">
-                                    Date added :
-                                    <span className="text-black font-normal text-sm ml-2">06-Jun-24 09:25:10 am</span>
-                                  </div>
-                                  <div className="flex flex-row justify-center items-center gap-x-4 mt-8 mb-4">
-                                    <Button
-                                      type="submit"
-                                      className="bg-blue-400 text-white text-xs font-medium font-poppins"
-                                      onClick={() => navigate("/orderDetails")}
-                                    >
-                                      View Order Details
-                                    </Button>
-                                  </div>
-                                </form>
-                              </Form>
-                            </AlertDialogDescription>
-                          </AlertDialogContent>
-                        </AlertDialog>
+                        <Button
+                          className="flex flex-row bg-blue-400 text-white gap-x-2"
+                          onClick={() => {
+                            setProceedPaymentDialog(true);
+                            setRechargeWalletDialog(false);
+                          }}
+                        >
+                          <p className="text-sm font-normal">Proceed to Payment</p>
+                        </Button>
+                      </div>
+                    </form>
+                  </Form>
+                </AlertDialogDescription>
+              </AlertDialogContent>
+            </AlertDialog>
+            <AlertDialog open={proceedPaymentDialog}>
+              <AlertDialogTrigger asChild></AlertDialogTrigger>
+              <AlertDialogContent className="p-0">
+                <AlertDialogTitle></AlertDialogTitle>
+                <AlertDialogDescription>
+                  <Form {...amountForm}>
+                    <form onSubmit={amountForm.handleSubmit(onSubmit)}>
+                      <div className="flex justify-between items-center border-b border-b-white-100 px-6 py-2">
+                        <p className="font-semibold text-base text-black">Transaction Details</p>
+                        <AlertDialogCancel className="mt-0 border text-gray-800 border-transparent hover:bg-transparent hover:text-gray-800 text-xs font-normal font-poppins bg-transparent">
+                          <X onClick={() => setProceedPaymentDialog(false)} />
+                        </AlertDialogCancel>
+                      </div>
+                      <div className="flex flex-col items-center justify-center text-gray-800 font-normal text-2xl mt-8">
+                        Transaction Amount
+                      </div>
+                      <div className="flex flex-row gap-x-3 items-center justify-center text-black font-normal text-2xl mt-6">
+                        ₹ {inputAmount}
+                        <Badge className="text-green bg-green-100  border-green">Completed</Badge>
+                      </div>
+                      <div className="flex flex-row items-center justify-center text-gray-800 font-normal text-sm mt-8">
+                        Date added :<span className="text-black font-normal text-sm ml-2">06-Jun-24 09:25:10 am</span>
+                      </div>
+                      <div className="flex flex-row justify-center items-center gap-x-4 mt-8 mb-4">
+                        <Button
+                          type="submit"
+                          className="bg-blue-400 text-white text-xs font-medium font-poppins"
+                          onClick={() => navigate("/orderDetails")}
+                        >
+                          View Order Details
+                        </Button>
                       </div>
                     </form>
                   </Form>

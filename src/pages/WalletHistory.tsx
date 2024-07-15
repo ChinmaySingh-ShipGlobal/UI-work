@@ -351,7 +351,7 @@ export default function WalletHistory() {
 
                     <Table className="w-full">
                       <TableHeader>
-                        <TableRow className="bg-gray-100 text-gray-800 rounded-xl text-xs font-medium font-poppins px-2">
+                        <TableRow className="bg-gray-100 text-gray-800 rounded-xl text-xs font-medium font-poppins px-2 whitespace-nowrap">
                           <TableHead className="py-2 text-xs font-medium font-poppins ">Transaction Date</TableHead>
                           <TableHead className="py-2 text-xs font-medium font-poppins ">Transaction Type</TableHead>
                           <TableHead className="py-2 text-xs font-medium font-poppin">Description</TableHead>
@@ -384,7 +384,12 @@ export default function WalletHistory() {
                               </Badge>
                             </TableCell>
                             <TableCell className="py-2">
-                              <CornerDownRight className="text-gray-800" />
+                              <Button
+                                className="bg-transparent hover:bg-gray-150"
+                                onClick={() => navigate("/orderDetails")}
+                              >
+                                <CornerDownRight className="text-gray-800" />
+                              </Button>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -402,7 +407,7 @@ export default function WalletHistory() {
 
                     <Table className="w-full">
                       <TableHeader>
-                        <TableRow className="bg-gray-100 text-gray-800 rounded-xl text-xs font-medium font-poppins px-2">
+                        <TableRow className="bg-gray-100 text-gray-800 rounded-xl text-xs font-medium font-poppins px-2 whitespace-nowrap">
                           <TableHead className="py-2 text-xs font-medium font-poppins ">Transaction Code</TableHead>
                           <TableHead className="py-2 text-xs font-medium font-poppins ">Recharge Date</TableHead>
                           <TableHead className="py-2 text-xs font-medium font-poppins ">Recharge Amount</TableHead>

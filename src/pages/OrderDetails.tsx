@@ -103,7 +103,7 @@ export default function OrderDetails() {
                 </div>
                 <Table className="w-full mt-4">
                   <TableHeader>
-                    <TableRow className="bg-gray-100 text-gray-800 text-xs font-medium font-poppins">
+                    <TableRow className="bg-gray-100 text-gray-800 text-xs font-medium font-poppins whitespace-nowrap">
                       <TableHead className="py-2 text-xs font-medium font-poppins ">Sr No.</TableHead>
                       <TableHead className="py-2 text-xs font-medium font-poppins ">Product Name</TableHead>
                       <TableHead className="py-2 text-xs font-medium font-poppins ">SKU</TableHead>

@@ -153,14 +153,14 @@ export default function OrderDetails() {
                         <TableCell>{billDetail.hsn}</TableCell>
                         <TableCell>{billDetail.qty}</TableCell>
                         <TableCell>{billDetail.unitPrice}</TableCell>
-                        <TableCell>{billDetail.total}</TableCell>
+                        <TableCell className="whitespace-nowrap">{billDetail.total}</TableCell>
                       </TableRow>
                     ))}
                     <TableRow>
                       <TableCell colSpan={6} className="text-right font-semibold text-sm">
                         Total
                       </TableCell>
-                      <TableCell className="font-semibold text-sm"> ₹ 2322.00</TableCell>
+                      <TableCell className="font-semibold text-sm whitespace-nowrap"> ₹ 2322.00</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
@@ -170,8 +170,8 @@ export default function OrderDetails() {
         </div>
         <div className="lg:w-1/3 bg-gray-50">
           <Card className="shadow-none bg-orange-200 px-0 border rounded-lg mt-2 lg:mt-0">
-            <CardContent className="px-0">
-              <div className="flex border-b border-orange-150 py-2">
+            <CardContent className="px-0 py-0">
+              <div className="flex border-b border-orange-150 pt-2">
                 <p className="text-base text-orange-300 font-semibold px-4">Summary</p>
               </div>
               <div className="flex flex-row justify-between px-4 py-2 text-black">
@@ -188,7 +188,7 @@ export default function OrderDetails() {
                   <div className="font-medium font-poppins text-xs">₹ 2322.00</div>
                 </div>
               </div>
-              <div className="flex flex-row justify-between px-4 py-3 bg-orange-150 mt-4 mb-1">
+              <div className="flex flex-row justify-between px-4 py-3 bg-orange-150 mt-4">
                 <p className="text-xs font-semibold">Total</p>
                 <p className="text-xs font-semibold">₹ 2322.00</p>
               </div>

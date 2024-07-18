@@ -7,6 +7,8 @@ import ProfilePopover from "./pages/ProfilePopover";
 import RateCalculator from "./pages/RateCalculator";
 import WalletHistory from "./pages/WalletHistory";
 import OrderDetails from "./pages/OrderDetails";
+import TanTable from "./pages/JSONtoCSV";
+import TanTableUpload from "./pages/CSVtoJSON";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,8 @@ const router = createBrowserRouter([
   { path: "/profilePopover", element: <ProfilePopover /> },
   { path: "/walletHistory", element: <WalletHistory /> },
   { path: "/orderDetails", element: <OrderDetails /> },
+  { path: "/test", element: <TanTable /> },
+  { path: "/test2", element: <TanTableUpload /> },
 ]);
 function App() {
   return <RouterProvider router={router} />;

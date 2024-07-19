@@ -1,14 +1,13 @@
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 import { Columns, Profile } from "@/templates/Columns";
 import { DataTable } from "@/templates/DataTable";
-import axios from "axios";
-import React, { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-
+import handleDownload from "@/lib/HandleDownload";
 const baseURL = "https://jsonplaceholder.typicode.com/users";
 
-const TanTable: React.FC = () => {
+const JSONtoCSV = () => {
   const [data, setData] = useState<Profile[]>([]);
-
   const downloadLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
@@ -24,46 +23,26 @@ const TanTable: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleDownload = () => {
-    // Construct CSV content
-    const csvContent =
-      "id,name,username,email,address\n" +
-      data
-        .map(
-          (profile) =>
-            `${profile.id},"${profile.name}","${profile.username}","${profile.email}","${[
-              profile.address.suite,
-              profile.address.street,
-              profile.address.city,
-              profile.address.zipcode,
-            ].join(", ")}"`,
-        )
-        .join("\n");
-
-    // Create Blob
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-
-    // Create URL for the Blob
-    const url = window.URL.createObjectURL(blob);
-
-    // Trigger download
-    if (downloadLinkRef.current) {
-      downloadLinkRef.current.href = url;
-      downloadLinkRef.current.download = "data.csv";
-      downloadLinkRef.current.click();
-    }
-  };
-
   return (
     <div className="container mx-auto py-10">
       <div className="flex justify-end mb-4">
-        <Button onClick={handleDownload}>Export</Button>
-        {/* Hidden download link */}
-        <a ref={downloadLinkRef} style={{ display: "none" }} />
+        <Button
+          onClick={() =>
+            handleDownload(
+              ["id", "name", "username", "email", "address.suite", "address.street", "address.city", "address.zipcode"],
+              data,
+              downloadLinkRef,
+              "userData",
+            )
+          }
+        >
+          Export
+        </Button>
+        <a ref={downloadLinkRef} className="hidden" />
       </div>
       <DataTable columns={Columns} data={data} />
     </div>
   );
 };
 
-export default TanTable;
+export default JSONtoCSV;

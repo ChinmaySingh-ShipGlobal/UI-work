@@ -10,6 +10,7 @@ import OrderDetails from "./pages/OrderDetails";
 import JSONtoCSV from "@/pages/JSONtoCSV.tsx";
 import CSVtoJSON from "@/pages/CSVtoJSON.tsx";
 import { NewCustomerDialog } from "./pages/NewCustomerDialog.tsx";
+import CreateCSBIVOrder from "./pages/CreateCSBIVOrder.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
   // { path: "/test", element: <JSONtoCSV /> },
   // { path: "/test2", element: <CSVtoJSON /> },
   { path: "/addNewCustomer", element: <NewCustomerDialog /> },
+  { path: "/createcsbIV", element: <CreateCSBIVOrder /> },
 ]);
 function App() {
   return <RouterProvider router={router} />;

@@ -3,46 +3,60 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useDispatch } from "react-redux";
 import { updateSortOrder } from "@/redux/actions";
 import SelectInputField from "@/components/elements/SelectInputField";
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import * as z from "zod"; // Import Zod
 import { Form } from "@/components/ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup } from "@/components/ui/select";
 import InputFieldTest from "@/components/elements/InputFieldTest";
 import InputwithTagRightTest from "@/components/elements/InputwithTagRightTest";
 import { Badge } from "@/components/ui/badge";
 import { FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import LabelWithText from "@/components/elements/LabelWithText";
+import { NewCustomerDialog } from "./NewCustomerDialog";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Combobox } from "@/components/elements/Combobox";
 
+const frameworks = [
+  {
+    value: "next.js",
+    label: "Next.js",
+  },
+  {
+    value: "sveltekit",
+    label: "SvelteKit",
+  },
+  {
+    value: "nuxt.js",
+    label: "Nuxt.js",
+  },
+  {
+    value: "remix",
+    label: "Remix",
+  },
+  {
+    value: "astro",
+    label: "Astro",
+  },
+];
 const selectCountry = [
   { key: "usa", value: "USA" },
   { key: "india", value: "India" },
   { key: "albania", value: "Albania" },
-];
-
-const partners = [
-  {
-    partner: "UPS",
-    rating: "4.2",
-    time: "4 to 7 days",
-    rate: "Rs. 3500.00",
-    speed: "Fastest",
-  },
-  {
-    partner: "ABS",
-    rating: "4.2",
-    time: "4 to 7 days",
-    rate: "Rs. 3500.00",
-    speed: "Cheapest",
-  },
-];
-
-const sortType = [
-  { key: "cheapest", value: "Cheapest" },
-  { key: "fastest", value: "Fastest" },
 ];
 
 const formSchema = z.object({
@@ -57,7 +71,7 @@ const formSchema = z.object({
   height: z.coerce.number({ message: "Height must be in digits" }),
 });
 
-export default function RateCalculator() {
+export default function CreateCSBIVOrder() {
   const [showCalculatedWeight, setShowCalculatedWeight] = useState<boolean>(false);
 
   const dispatch = useDispatch();
@@ -78,238 +92,65 @@ export default function RateCalculator() {
 
   return (
     <>
-      <div className=" bg-gray-100">
-        <div className="font-semibold text-2xl text-center m-2 lg:text-left lg:ml-6">
-          <p className="m-2 p-2 text-2xl font-medium font-poppins">Rate Calculator</p>
-          <div className="bg-white">
+      <div className=" bg-gray-500">
+        <div className="font-semibold text-2xl  m-2  lg:ml-6">
+          <p className="m-2 p-2 text-2xl font-medium font-poppins">Create CSB-IV Order</p>
+          <div className="bg-gray-500">
             <div className="lg:flex lg:flex-row lg:gap-x-3">
-              <Card className="lg:w-2/3 shadow-none">
-                <CardContent>
-                  {/* Rate Calculator Input Fields */}
-                  <div className="lg:flex lg:flex-row lg:gap-x-3">
-                    {/* Rate Calculator Input Fields */}
-                    <Form {...form}>
-                      <form onSubmit={form.handleSubmit(onSubmit)}>
-                        <div className="grid grid-cols-1 gap-x-2 text-left lg:grid-cols-4 max-w-sm m-auto lg:max-w-full">
-                          <div className="lg:col-span-2 lg:mr-4 lg:gap-2 justify-center items-center ">
-                            <FormField
-                              control={form.control}
-                              name="country"
-                              render={({ field }) => (
-                                <FormItem>
-                                  <div>
-                                    <Label htmlFor="country" className="font-normal text-xs">
-                                      Destination Country
-                                    </Label>
-                                    <div className="mt-2">
-                                      <Select onValueChange={field.onChange}>
-                                        <SelectTrigger className="ring-blue-50 font-normal text-sm h-9">
-                                          <SelectValue placeholder="Select" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                          <SelectGroup>
-                                            {selectCountry.map((item) => (
-                                              <SelectItem value={item.key} key={item.key}>
-                                                {item.value}
-                                              </SelectItem>
-                                            ))}
-                                          </SelectGroup>
-                                        </SelectContent>
-                                      </Select>
-                                    </div>
-                                    <FormDescription></FormDescription>
-                                    <FormMessage />
-                                  </div>
-                                </FormItem>
-                              )}
-                            />
-                          </div>
-                          <div className="lg:col-span-2 lg:mt-2 lg:gap-2 lg:ml-4">
-                            <InputFieldTest
-                              name="pincode"
-                              label="Destination Pincode"
-                              type="text"
-                              placeholder="Type code"
-                              form={form}
-                            />
-                          </div>
+              <Accordion type="single" collapsible className="w-full h-max lg:w-2/3  shadow rounded-sm">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="text-sm font-medium bg-gray-100 px-6">
+                    <p>
+                      <span className="text-xs font-semibold text-white bg-black inline py-1 px-2 mr-3">1</span>
+                      Customer/Consigner Details
+                    </p>
+                  </AccordionTrigger>
+                  <AccordionContent className="rounded-sm p-6 bg-white text-left">
+                    <Label className="text-xs font-normal">Search Customer</Label>
+                    <Select>
+                      <SelectTrigger className="lg:w-2/3 mt-2 text-sm font-normal">
+                        <SelectValue placeholder="Select" className="text-left" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="shivanshkush">
+                            9832343258 / Shivansh Kush / shivanshkush212@gmail.com
+                          </SelectItem>
+                          <SelectItem value="value2">Value2</SelectItem>
+                          <SelectItem value="value3">Value 3</SelectItem>
+                          <SelectItem value="value4">
+                            <NewCustomerDialog />
+                          </SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                    <div className="mt-6 lg:flex lg:flex-row grid gap-y-4">
+                      <div className="lg:col-span-3 lg:grid lg:grid-cols-3  grid gap-y-4 lg:gap-x-8">
+                        <div className="space-y-2">
+                          <p className="text-sm font-semiboldld">Shivanshu Kush</p>
+                          <p className="font-normal text-xs">shivanshkush212@gmail.com</p>
+                          <p className="font-normal text-xs">+91-9832343258</p>
                         </div>
-                        <div className="flex-1 flex-col gap-x-4 text-left lg:flex lg:flex-row lg:justify-between max-w-sm m-auto lg:mt-4 lg:max-w-full">
-                          <InputwithTagRightTest
-                            label="Actual Weight"
-                            type="text"
-                            unit="kg"
-                            placeholder="Type here ..."
-                            form={form}
-                            inputTagClass=""
-                            classNameInput=""
-                            name="weight"
-                            divClass="lg:mr-8"
-                          />
-                          <InputwithTagRightTest
-                            label="Length"
-                            type="text"
-                            unit="cm"
-                            placeholder="Type here ..."
-                            form={form}
-                            inputTagClass=""
-                            classNameInput=""
-                            name="length"
-                            divClass=""
-                          />
-                          <InputwithTagRightTest
-                            label="Width"
-                            type="text"
-                            unit="cm"
-                            placeholder="Type here ..."
-                            form={form}
-                            inputTagClass=""
-                            classNameInput=""
-                            name="width"
-                            divClass=""
-                          />
-                          <InputwithTagRightTest
-                            label="Height"
-                            type="text"
-                            unit="cm"
-                            placeholder="Type here ..."
-                            form={form}
-                            inputTagClass=""
-                            classNameInput=""
-                            name="height"
-                            divClass=""
-                          />
-                        </div>
-                        {/* Reset and Calculate buttons */}
-                        <div className="flex justify-center gap-4 mt-6 lg:justify-end">
-                          <Button className="border border-blue-400 bg-transparent text-blue-400 text-sm font-normal hover:bg-transparent">
-                            Reset
-                          </Button>
-                          <Button
-                            className="font-normal text-sm disabled:bg-gray-450 disabled:border-gray-600 disabled:border disabled:hover:bg-gray-450 disabled:text-gray-800 bg-blue-400 text-white"
-                            type="submit"
-                          >
-                            Calculate
-                          </Button>
-                        </div>
-                      </form>
-                    </Form>
-                  </div>
-                  <Combobox />
-                  {/* Components when Calculate button is pressed */}
-                  {showCalculatedWeight && (
-                    <>
-                      {/* Weights description as Dead, Volumetric and Billed weights */}
-                      <div className="flex justify-center mt-10 text-gray-700">
-                        <div className="grid gap-x-3 grid-cols-3">
-                          <div className="py-2 px-0 text-center border border-gray-350 rounded-lg bg-gray-250">
-                            <p className="text-sm font-medium text-gray-650">
-                              {form.getValues("weight")}
-                              KG
-                            </p>
-                            <p className="text-sm font-semibold text-gray-600">Dead weight</p>
-                          </div>
-                          <div className="p-2 text-center border border-gray-350 rounded-lg bg-gray-250">
-                            <p className="text-sm font-medium text-gray-650">{volumetric_weight} KG</p>
-                            <p className="text-sm font-semibold text-gray-600">Volumetric weight</p>
-                          </div>
-                          <div className="p-2 text-center border border-orange-700 text-orange-700 bg-pink-100 rounded-lg">
-                            <p className="text-sm font-semibold">
-                              {form.getValues("weight") > volumetric_weight
-                                ? form.getValues("weight")
-                                : volumetric_weight}{" "}
-                              KG
-                            </p>
-                            <p className="text-sm font-semibold ">Billed weight</p>
-                          </div>
-                        </div>
+                        <LabelWithText
+                          title="Address"
+                          titleClass="font-medium"
+                          value="580 Sector-52, Koyal Vihar, Gurgaon, Haryana, 122932"
+                        />
+                        <LabelWithText
+                          title="Document Type"
+                          titleClass="font-medium"
+                          value="Aadhar Card"
+                          valuenextline="XXXX-XXXX-3253"
+                        />
                       </div>
-                      {/* Partners Table */}
-                      <div className="bg-white rounded-md mt-4">
-                        <div className="grid grid-cols-1 lg:flex lg:flex-row lg:justify-between items-center mb-4">
-                          <p className="font-semibold text-sm font-poppins">Showing {partners.length} results</p>
-                          <div className="flex h-9 flex-row rounded-sm items-center justify-end lg:border-gray-150 lg:border px-2">
-                            <p className="text-xs font-normal font-poppins h-1/2 text-gray-700 mr-2">Sort by:</p>
-                            <SelectInputField
-                              name="sort"
-                              data={sortType}
-                              defaultValue="cheapest"
-                              className="rounded-sm h-7 mb-3 border-transparent placeholder:text-xs placeholder:font-medium text-black"
-                              setSelectValueObj={handleSelectSortOrder}
-                            />
-                          </div>
-                        </div>
-                        <Table className="w-full">
-                          <TableHeader>
-                            <TableRow className="bg-gray-100 text-gray-800 text-xs font-medium font-poppins">
-                              <TableHead className="py-2 text-xs font-medium font-poppins ">Courier Partner</TableHead>
-                              <TableHead className="py-2 text-xs font-medium font-poppins ">Rating</TableHead>
-                              <TableHead className="py-2 text-xs font-medium font-poppins ">
-                                Estimated Delivery Time
-                              </TableHead>
-                              <TableHead className="py-2 text-xs font-medium font-poppins ">Shipment Rate</TableHead>
-                              <TableHead className="py-2 text-xs font-medium font-poppins "></TableHead>
-                              <TableHead className="py-2 text-xs font-medium font-poppins ">Action</TableHead>
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody className="text-left">
-                            {partners.map((partner, index) => (
-                              <TableRow key={index} className="border border-blue-light">
-                                <TableCell className="py-2 px-6">{partner.partner}</TableCell>
-                                <TableCell className="py-2 flex items-center mt-2">
-                                  {partner.rating}
-                                  <svg
-                                    width="12"
-                                    height="12"
-                                    viewBox="0 0 12 12"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="ml-2"
-                                  >
-                                    <g clip-path="url(#clip0_12_1626)">
-                                      <path
-                                        d="M4.29362 4.11797L5.59262 1.50197C5.63043 1.42626 5.68859 1.36259 5.76056 1.31808C5.83254 1.27357 5.91549 1.25 6.00012 1.25C6.08474 1.25 6.1677 1.27357 6.23967 1.31808C6.31165 1.36259 6.36981 1.42626 6.40762 1.50197L7.70662 4.11797L10.6106 4.53997C10.6944 4.55159 10.7732 4.58652 10.8381 4.64078C10.9029 4.69504 10.9512 4.76644 10.9774 4.84683C11.0037 4.92723 11.0068 5.01338 10.9864 5.09545C10.966 5.17752 10.9229 5.2522 10.8621 5.31097L8.76112 7.34597L9.25712 10.221C9.32062 10.59 8.93062 10.871 8.59712 10.697L6.00012 9.33897L3.40262 10.697C3.06962 10.8715 2.67962 10.59 2.74312 10.2205L3.23912 7.34547L1.13812 5.31047C1.07761 5.25166 1.03482 5.17705 1.0146 5.09513C0.994384 5.01321 0.997555 4.92725 1.02375 4.84704C1.04995 4.76683 1.09813 4.69558 1.1628 4.64139C1.22748 4.58719 1.30606 4.55223 1.38962 4.54047L4.29362 4.11797Z"
-                                        fill="#F59300"
-                                        stroke="#F59300"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                      />
-                                    </g>
-                                    <defs>
-                                      <clipPath id="clip0_12_1626">
-                                        <rect width="12" height="12" fill="white" />
-                                      </clipPath>
-                                    </defs>
-                                  </svg>
-                                </TableCell>
-                                <TableCell className="py-2">{partner.time}</TableCell>
-                                <TableCell className="py-2">{partner.rate}</TableCell>
-                                <TableCell>
-                                  <Badge
-                                    className={
-                                      partner.speed === "Fastest"
-                                        ? "text-orange-dark bg-orange-light"
-                                        : "text-purple bg-blue-light"
-                                    }
-                                  >
-                                    {partner.speed}
-                                  </Badge>
-                                </TableCell>
-                                <TableCell className="py-2 m-auto">
-                                  <Button className="bg-blue-400 text-white text-xs font-medium font-poppins py-1 rounded-md">
-                                    Create Order
-                                  </Button>
-                                </TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table>
+                      <div className="place-content-end">
+                        <Button>Continue</Button>
                       </div>
-                    </>
-                  )}
-                </CardContent>
-              </Card>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+
               {/* Right Tab */}
               <Card className="hidden lg:w-1/3 lg:block shadow-none">
                 <CardContent>

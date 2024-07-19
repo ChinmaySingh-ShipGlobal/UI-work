@@ -84,7 +84,7 @@ export function NewCustomerDialog() {
       <AlertDialogTrigger asChild>
         <Button variant="outline">Show Dialog</Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="p-0 overflow-y-auto h-screen">
+      <AlertDialogContent className="p-0 overflow-y-auto h-176">
         <AlertDialogHeader className="p-0 pb-1 border-b">
           <AlertDialogTitle className=" text-left flex flex-row justify-between items-center px-6 py-2 font-semibold text-lg">
             Add New Customer

@@ -1,94 +1,105 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { useDispatch } from "react-redux";
-import { updateSortOrder } from "@/redux/actions";
-import SelectInputField from "@/components/elements/SelectInputField";
-
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import * as z from "zod"; // Import Zod
-import { Form } from "@/components/ui/form";
-import InputFieldTest from "@/components/elements/InputFieldTest";
-import InputwithTagRightTest from "@/components/elements/InputwithTagRightTest";
-import { Badge } from "@/components/ui/badge";
-import { FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import LabelWithText from "@/components/elements/LabelWithText";
-import { NewCustomerDialog } from "./NewCustomerDialog";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Combobox } from "@/components/elements/Combobox";
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { X } from "lucide-react";
+import { AlertDialogDescription, AlertDialogTitle } from "@radix-ui/react-alert-dialog";
+import { Form } from "@/components/ui/form";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup } from "@/components/ui/select";
+import InputFieldTest from "@/components/elements/InputFieldTest";
+import { FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import InputWithTagLeftTest from "@/components/elements/InputWithTagLeftTest";
 const frameworks = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "9727352876/ABC Parihar/kushalparihar@213gmail.com",
+    label: "9727352876 / ABC Parihar / kushalparihar@213gmail.com",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: "9727352876/Kushal Parihar/kushalparihar@213gmail.com2",
+    label: "9727352876 / Kushal Parihar / kushalparihar@213gmail.com",
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
+    value: "9832343258/Shivansh Kush/shivanshkush212@gmail.com",
+    label: "9832343258 / Shivansh Kush / shivanshkush212@gmail.com",
   },
 ];
-const selectCountry = [
-  { key: "usa", value: "USA" },
-  { key: "india", value: "India" },
-  { key: "albania", value: "Albania" },
+const documenttype = [
+  { key: "aadhar", value: "Aadhar Card" },
+  { key: "drivingLicense", value: "Driving License" },
+  { key: "passport", value: "Passport" },
+];
+const city = [
+  { key: "city1", value: "City1" },
+  { key: "city2", value: "City2" },
+  { key: "city3", value: "City3" },
+];
+const state = [
+  { key: "state1", value: "State1" },
+  { key: "state2", value: "State2" },
+  { key: "state3", value: "State3" },
 ];
 
 const formSchema = z.object({
-  country: z.string({ message: "Select Country" }),
+  mobileNumber: z.coerce.number({ message: "Mobile Number must be in digits" }),
+  email: z.string({ message: "Enter email" }).email({ message: "Enter valid email" }),
+  document: z.string({ message: "Select Document" }),
+  documentValue: z.string({ message: "Enter detail" }),
+  firstName: z.string({ message: "Enter first name" }),
+  lastName: z.string({ message: "Enter last name" }),
+  address: z.string({ message: "Enter address" }),
   pincode: z.coerce
     .number({ message: "Pincode must be in digits" })
     .min(100000, { message: "Pincode must be 6 digits" })
     .max(999999, { message: "Pincode must be 6 digits" }),
-  weight: z.coerce.number({ message: "Weight must be in digits" }),
-  length: z.coerce.number({ message: "Length must be in digits" }),
-  width: z.coerce.number({ message: "Width must be in digits" }),
-  height: z.coerce.number({ message: "Height must be in digits" }),
+  city: z.string({ message: "Enter City" }),
+  state: z.string({ message: "Enter State" }),
 });
 
 export default function CreateCSBIVOrder() {
-  const [showCalculatedWeight, setShowCalculatedWeight] = useState<boolean>(false);
-
-  const dispatch = useDispatch();
-  const handleSelectSortOrder = (sortOrder: string) => {
-    dispatch(updateSortOrder(sortOrder));
-  };
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
+  const [verifiedEnable, setVerifiedEnable] = useState(false);
+  const [verified, setVerified] = useState(false);
 
+  // Function to handle form submission
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setShowCalculatedWeight(true);
     console.log(values);
   }
+  const selectedDocument = form.watch("document");
 
-  const volumetric_weight = form.getValues("length") * form.getValues("width") * form.getValues("height");
+  // Function to handle file input change
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setVerifiedEnable(true); // Enable verified styling
+    if (event.target.files?.length) {
+      // File is selected
+      setVerified(true); // Mark as verified
+    } else {
+      // No file selected
+      setVerified(false); // Mark as unverified
+    }
+  };
 
   return (
     <>
@@ -106,25 +117,278 @@ export default function CreateCSBIVOrder() {
                     </p>
                   </AccordionTrigger>
                   <AccordionContent className="rounded-sm p-6 bg-white text-left">
-                    <Label className="text-xs font-normal">Search Customer</Label>
-                    <Select>
-                      <SelectTrigger className="lg:w-2/3 mt-2 text-sm font-normal">
-                        <SelectValue placeholder="Select" className="text-left" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectItem value="shivanshkush">
-                            9832343258 / Shivansh Kush / shivanshkush212@gmail.com
-                          </SelectItem>
-                          <SelectItem value="value2">Value2</SelectItem>
-                          <SelectItem value="value3">Value 3</SelectItem>
-                          <SelectItem value="value4">
-                            <NewCustomerDialog />
-                          </SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                    <div className="mt-6 lg:flex lg:flex-row grid gap-y-4">
+                    <div className="grid grid-cols-1 space-y-2">
+                      <Label className="text-xs font-normal">Search Customer</Label>
+                      <Popover open={open} onOpenChange={setOpen}>
+                        <div></div>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            role="combobox"
+                            aria-expanded={open}
+                            className="justify-between lg:w-3/5 overflow-x-hidden overflow-y-clip"
+                          >
+                            {value ? frameworks.find((framework) => framework.value === value)?.label : "Select "}
+                            <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-[--radix-popover-trigger-width]">
+                          <Command className="w-full">
+                            <CommandInput
+                              placeholder="Search by Mobile Number Or Customer Name or Email id"
+                              className="text-xs font-normal text-gray-600 "
+                            />
+                            <CommandEmpty>No framework found.</CommandEmpty>
+                            <CommandList>
+                              {frameworks.map((framework) => (
+                                <CommandItem
+                                  key={framework.value}
+                                  value={framework.value}
+                                  onSelect={(currentValue) => {
+                                    setValue(currentValue === value ? "" : currentValue);
+                                    setOpen(false);
+                                  }}
+                                >
+                                  {framework.label}
+                                </CommandItem>
+                              ))}
+
+                              <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                  <Button className="font-medium text-xs text-blue-400 bg-transparent hover:bg-transparent">
+                                    + Add New Customer
+                                  </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent className="p-0 overflow-y-auto h-176">
+                                  <AlertDialogHeader className="p-0 pb-1 border-b">
+                                    <AlertDialogTitle className=" text-left flex flex-row justify-between items-center px-6 py-2 font-semibold text-lg">
+                                      Add New Customer
+                                      <AlertDialogCancel className="bg-transparent border-none">
+                                        <X />
+                                      </AlertDialogCancel>
+                                    </AlertDialogTitle>
+                                  </AlertDialogHeader>
+                                  <AlertDialogDescription className="px-6 pb-6">
+                                    <Form {...form}>
+                                      <form onSubmit={form.handleSubmit(onSubmit)}>
+                                        <div className="lg:grid lg:grid-cols-2 gap-y-4 gap-x-6">
+                                          <div className="grid grid-cols-2 lg:col-span-2 gap-x-6">
+                                            <InputWithTagLeftTest
+                                              form={form}
+                                              name="mobileNumber"
+                                              label="Mobile Number"
+                                              type="text"
+                                              tag="+91"
+                                              placeholder=""
+                                              divClass=""
+                                            />
+                                            <InputFieldTest
+                                              label="Email"
+                                              name="email"
+                                              form={form}
+                                              type="email"
+                                              placeholder=""
+                                            />
+                                          </div>
+                                          <FormField
+                                            control={form.control}
+                                            name="document"
+                                            render={({ field }) => (
+                                              <FormItem>
+                                                <div>
+                                                  <Label htmlFor="document" className="font-normal text-xs">
+                                                    Document Type
+                                                  </Label>
+                                                  <div className="mt-1">
+                                                    <Select {...field} onValueChange={field.onChange}>
+                                                      <SelectTrigger className="ring-blue-50 font-normal text-sm h-9">
+                                                        <SelectValue placeholder="Select" />
+                                                      </SelectTrigger>
+                                                      <SelectContent>
+                                                        <SelectGroup>
+                                                          {documenttype.map((item) => (
+                                                            <SelectItem value={item.key} key={item.key}>
+                                                              {item.value}
+                                                            </SelectItem>
+                                                          ))}
+                                                        </SelectGroup>
+                                                      </SelectContent>
+                                                    </Select>
+                                                  </div>
+                                                  <FormDescription></FormDescription>
+                                                  <FormMessage />
+                                                </div>
+                                              </FormItem>
+                                            )}
+                                          />
+                                          {selectedDocument && (
+                                            <>
+                                              <InputFieldTest
+                                                label={
+                                                  documenttype.find((item) => item.key === selectedDocument)?.value
+                                                }
+                                                name="documentValue"
+                                                form={form}
+                                                type="text"
+                                                placeholder=""
+                                              />
+                                              <div>
+                                                <Label
+                                                  className="text-xs font-normal font-poppins"
+                                                  htmlFor="documentUpload"
+                                                >
+                                                  Upload{" "}
+                                                  {documenttype.find((item) => item.key === selectedDocument)?.value}{" "}
+                                                  Image
+                                                </Label>
+
+                                                <Input
+                                                  type="file"
+                                                  id="documentUpload"
+                                                  className="mt-1"
+                                                  accept=".pdf, .jpg,.png"
+                                                  onChange={handleFileChange}
+                                                />
+                                              </div>
+                                              <div className="lg:flex lg:justify-start lg:items-center lg:pt-6">
+                                                <Badge
+                                                  className={`rounded-sm ${
+                                                    verifiedEnable
+                                                      ? verified
+                                                        ? "text-green-700 bg-green-200"
+                                                        : "text-red-600 bg-red-400"
+                                                      : "text-gray-800 border-gray-600 bg-gray-450"
+                                                  }`}
+                                                >
+                                                  <span className="text-xs font-medium">
+                                                    {verifiedEnable ? (verified ? "Verified" : "Unverified") : "Verify"}
+                                                  </span>
+                                                </Badge>
+                                              </div>
+                                            </>
+                                          )}
+                                          {verifiedEnable && (
+                                            <div className="lg:col-span-2 gap-y-2">
+                                              <div className="grid grid-cols-2 gap-x-6 lg:gap-y-2 mt-2">
+                                                <InputFieldTest
+                                                  label="First Name"
+                                                  name="firstName"
+                                                  form={form}
+                                                  type="text"
+                                                  placeholder=""
+                                                />
+                                                <InputFieldTest
+                                                  label="Last Name"
+                                                  name="lastName"
+                                                  form={form}
+                                                  type="text"
+                                                  placeholder=""
+                                                />
+                                                <div className="col-span-2">
+                                                  <InputFieldTest
+                                                    label="Address"
+                                                    name="address"
+                                                    form={form}
+                                                    type="text"
+                                                    placeholder=""
+                                                  />
+                                                </div>
+                                                <InputFieldTest
+                                                  label="Pincode"
+                                                  name="pincode"
+                                                  form={form}
+                                                  type="text"
+                                                  placeholder=""
+                                                />
+                                                <FormField
+                                                  control={form.control}
+                                                  name="city"
+                                                  render={({ field }) => (
+                                                    <FormItem>
+                                                      <div>
+                                                        <Label htmlFor="document" className="font-normal text-xs">
+                                                          City
+                                                        </Label>
+                                                        <div className="mt-1">
+                                                          <Select {...field} onValueChange={field.onChange}>
+                                                            <SelectTrigger className="ring-blue-50 font-normal text-sm h-9">
+                                                              <SelectValue placeholder="Select" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                              <SelectGroup>
+                                                                {city.map((item) => (
+                                                                  <SelectItem value={item.key} key={item.key}>
+                                                                    {item.value}
+                                                                  </SelectItem>
+                                                                ))}
+                                                              </SelectGroup>
+                                                            </SelectContent>
+                                                          </Select>
+                                                        </div>
+                                                        <FormDescription></FormDescription>
+                                                        <FormMessage />
+                                                      </div>
+                                                    </FormItem>
+                                                  )}
+                                                />
+                                                <FormField
+                                                  control={form.control}
+                                                  name="state"
+                                                  render={({ field }) => (
+                                                    <FormItem>
+                                                      <div>
+                                                        <Label htmlFor="document" className="font-normal text-xs">
+                                                          State
+                                                        </Label>
+                                                        <div className="mt-1">
+                                                          <Select {...field} onValueChange={field.onChange}>
+                                                            <SelectTrigger className="ring-blue-50 font-normal text-sm h-9">
+                                                              <SelectValue placeholder="Select" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                              <SelectGroup>
+                                                                {state.map((item) => (
+                                                                  <SelectItem value={item.key} key={item.key}>
+                                                                    {item.value}
+                                                                  </SelectItem>
+                                                                ))}
+                                                              </SelectGroup>
+                                                            </SelectContent>
+                                                          </Select>
+                                                        </div>
+                                                        <FormDescription></FormDescription>
+                                                        <FormMessage />
+                                                      </div>
+                                                    </FormItem>
+                                                  )}
+                                                />
+                                              </div>
+                                            </div>
+                                          )}
+                                        </div>
+                                        <div className="flex flex-row justify-end items-center gap-x-4 mt-4">
+                                          <AlertDialogCancel className="mt-0 border-blue-400 border text-blue-400 text-xs font-normal font-poppins bg-transparent">
+                                            Cancel
+                                          </AlertDialogCancel>
+                                          <Button
+                                            type="submit"
+                                            //   disabled={allfieldsFilled}
+                                            className="text-xs font-normal font-poppins bg-blue-400 text-white"
+                                          >
+                                            Save
+                                          </Button>
+                                        </div>
+                                      </form>
+                                    </Form>
+                                  </AlertDialogDescription>
+                                </AlertDialogContent>
+                              </AlertDialog>
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                    </div>
+                    <div className="mt-6 lg:flex lg:flex-row grid gap-y-4 pl-4">
                       <div className="lg:col-span-3 lg:grid lg:grid-cols-3  grid gap-y-4 lg:gap-x-8">
                         <div className="space-y-2">
                           <p className="text-sm font-semiboldld">Shivanshu Kush</p>

@@ -7,10 +7,9 @@ import ProfilePopover from "./pages/ProfilePopover";
 import RateCalculator from "./pages/RateCalculator";
 import WalletHistory from "./pages/WalletHistory";
 import OrderDetails from "./pages/OrderDetails";
-import JSONtoCSV from "@/pages/JSONtoCSV.tsx";
-import CSVtoJSON from "@/pages/CSVtoJSON.tsx";
 import { NewCustomerDialog } from "./pages/NewCustomerDialog.tsx";
 import CreateCSBIVOrder from "./pages/CreateCSBIVOrder.tsx";
+import CreateCSBIVOrderClone from "./pages/CreateCSBIVOrderClone.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +23,7 @@ const router = createBrowserRouter([
   { path: "/profilePopover", element: <ProfilePopover /> },
   { path: "/walletHistory", element: <WalletHistory /> },
   { path: "/orderDetails", element: <OrderDetails /> },
-  // { path: "/test", element: <JSONtoCSV /> },
+  { path: "/test", element: <CreateCSBIVOrderClone /> },
   // { path: "/test2", element: <CSVtoJSON /> },
   { path: "/addNewCustomer", element: <NewCustomerDialog /> },
   { path: "/createcsbIV", element: <CreateCSBIVOrder /> },

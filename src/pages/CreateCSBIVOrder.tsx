@@ -27,18 +27,31 @@ import { FormDescription, FormField, FormItem, FormMessage } from "@/components/
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import InputWithTagLeftTest from "@/components/elements/InputWithTagLeftTest";
+
 const frameworks = [
   {
-    value: "9727352876/ABC Parihar/kushalparihar@213gmail.com",
-    label: "9727352876 / ABC Parihar / kushalparihar@213gmail.com",
+    number: "9727352876",
+    name: "Kushal Parihar",
+    mail: "kushalparihar@213gmail.com",
+    address: "580 Sector-52, Koyal Vihar, Gurgaon, Haryana, 122932",
+    docType: "Aadhar Card",
+    docNumber: "XXXX-XXXX-3253",
   },
   {
-    value: "9727352876/Kushal Parihar/kushalparihar@213gmail.com2",
-    label: "9727352876 / Kushal Parihar / kushalparihar@213gmail.com",
+    number: "9832343258",
+    name: "Shivansh Kush",
+    mail: "shivanshkush212@gmail.com",
+    address: "580 Sector-52, Koyal Vihar, Gurgaon, Haryana, 122932",
+    docType: "Passport",
+    docNumber: "XXXX-XXXX-3253",
   },
   {
-    value: "9832343258/Shivansh Kush/shivanshkush212@gmail.com",
-    label: "9832343258 / Shivansh Kush / shivanshkush212@gmail.com",
+    number: "9832343258",
+    name: "Random Person",
+    mail: "randomperson212@gmail.com",
+    address: "580 Sector-52, Koyal Vihar, Gurgaon, Haryana, 122932",
+    docType: "Driving License",
+    docNumber: "XXXX-XXXX-3253",
   },
 ];
 const documenttype = [
@@ -83,21 +96,17 @@ export default function CreateCSBIVOrder() {
   const [verifiedEnable, setVerifiedEnable] = useState(false);
   const [verified, setVerified] = useState(false);
 
-  // Function to handle form submission
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
   const selectedDocument = form.watch("document");
 
-  // Function to handle file input change
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setVerifiedEnable(true); // Enable verified styling
+    setVerifiedEnable(true);
     if (event.target.files?.length) {
-      // File is selected
-      setVerified(true); // Mark as verified
+      setVerified(true);
     } else {
-      // No file selected
-      setVerified(false); // Mark as unverified
+      setVerified(false);
     }
   };
 
@@ -126,9 +135,15 @@ export default function CreateCSBIVOrder() {
                             variant="outline"
                             role="combobox"
                             aria-expanded={open}
-                            className="justify-between lg:w-3/5 overflow-x-hidden overflow-y-clip"
+                            className={`justify-between lg:w-3/5 overflow-x-hidden overflow-y-clip ${
+                              value ? "text-black" : "text-gray-400  font-normal text-sm"
+                            }`}
                           >
-                            {value ? frameworks.find((framework) => framework.value === value)?.label : "Select "}
+                            {value
+                              ? `${frameworks.find((framework) => framework.mail === value)?.number} / ${
+                                  frameworks.find((framework) => framework.mail === value)?.name
+                                } / ${frameworks.find((framework) => framework.mail === value)?.mail}`
+                              : "Select "}
                             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </PopoverTrigger>
@@ -142,17 +157,16 @@ export default function CreateCSBIVOrder() {
                             <CommandList>
                               {frameworks.map((framework) => (
                                 <CommandItem
-                                  key={framework.value}
-                                  value={framework.value}
+                                  key={framework.mail}
+                                  value={framework.mail}
                                   onSelect={(currentValue) => {
                                     setValue(currentValue === value ? "" : currentValue);
                                     setOpen(false);
                                   }}
                                 >
-                                  {framework.label}
+                                  {`${framework.number} / ${framework.name} / ${framework.mail}`}
                                 </CommandItem>
                               ))}
-
                               <AlertDialog>
                                 <AlertDialogTrigger asChild>
                                   <Button className="font-medium text-xs text-blue-400 bg-transparent hover:bg-transparent">
@@ -391,20 +405,39 @@ export default function CreateCSBIVOrder() {
                     <div className="mt-6 lg:flex lg:flex-row grid gap-y-4 pl-4">
                       <div className="lg:col-span-3 lg:grid lg:grid-cols-3  grid gap-y-4 lg:gap-x-8">
                         <div className="space-y-2">
-                          <p className="text-sm font-semiboldld">Shivanshu Kush</p>
-                          <p className="font-normal text-xs">shivanshkush212@gmail.com</p>
-                          <p className="font-normal text-xs">+91-9832343258</p>
+                          <p className="text-sm font-semiboldld">
+                            {value ? frameworks.find((framework) => framework.mail === value)?.name : "Kushal Parihar "}
+                          </p>
+                          <p className="font-normal text-xs">
+                            {value
+                              ? frameworks.find((framework) => framework.mail === value)?.mail
+                              : "kushalparihar@213gmail.com "}
+                          </p>
+                          <p className="font-normal text-xs">
+                            +91-
+                            {value ? frameworks.find((framework) => framework.mail === value)?.number : "9727352876 "}
+                          </p>
                         </div>
                         <LabelWithText
                           title="Address"
                           titleClass="font-medium"
-                          value="580 Sector-52, Koyal Vihar, Gurgaon, Haryana, 122932"
+                          value={
+                            value
+                              ? frameworks.find((framework) => framework.mail === value)?.address
+                              : "580 Sector-52, Koyal Vihar, Gurgaon, Haryana, 122932 "
+                          }
                         />
                         <LabelWithText
                           title="Document Type"
                           titleClass="font-medium"
-                          value="Aadhar Card"
-                          valuenextline="XXXX-XXXX-3253"
+                          value={
+                            value ? frameworks.find((framework) => framework.mail === value)?.docType : "Aadhar Card "
+                          }
+                          valuenextline={
+                            value
+                              ? frameworks.find((framework) => framework.mail === value)?.docNumber
+                              : "XXXX-XXXX-3253 "
+                          }
                         />
                       </div>
                       <div className="place-content-end">

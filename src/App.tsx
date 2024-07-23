@@ -10,6 +10,11 @@ import OrderDetails from "./pages/OrderDetails";
 import { NewCustomerDialog } from "./pages/NewCustomerDialog.tsx";
 import CreateCSBIVOrder from "./pages/CreateCSBIVOrder.tsx";
 import FranchiseKYCSettings from "./pages/FranchiseKYCSettings.tsx";
+import CentreOneColumnSmall, { CentreOneColumnLarge, CentreOneColumnMedium } from "./Layouts/CenterOneColumn.tsx";
+import TwoColumn from "./Layouts/TwoColumn.tsx";
+import ThreeColumn from "./Layouts/ThreeColumn.tsx";
+import FourColumn from "./Layouts/FourColumn.tsx";
+import TwoThreeFour from "./Layouts/TwoThreeFour.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,9 +29,15 @@ const router = createBrowserRouter([
   { path: "/walletHistory", element: <WalletHistory /> },
   { path: "/orderDetails", element: <OrderDetails /> },
   { path: "/franchisekycsettings", element: <FranchiseKYCSettings /> },
-  // { path: "/test2", element: <CSVtoJSON /> },
   { path: "/addNewCustomer", element: <NewCustomerDialog /> },
   { path: "/createcsbIV", element: <CreateCSBIVOrder /> },
+  { path: "/twocolumns", element: <TwoColumn /> },
+  { path: "/threecolumns", element: <ThreeColumn /> },
+  { path: "/fourcolumns", element: <FourColumn /> },
+  { path: "/centeronecolumnsmall", element: <CentreOneColumnSmall /> },
+  { path: "/centeronecolumnmedium", element: <CentreOneColumnMedium /> },
+  { path: "/centeronecolumnlarge", element: <CentreOneColumnLarge /> },
+  { path: "/mixcolumns", element: <TwoThreeFour /> },
 ]);
 function App() {
   return <RouterProvider router={router} />;

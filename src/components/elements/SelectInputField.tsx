@@ -1,11 +1,5 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  SelectGroup,
-} from "@/components/ui/select";
+import React from "react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { Label } from "../ui/label";
 
@@ -22,7 +16,7 @@ interface SelectInputFieldProps {
   required?: boolean;
   data: SelectItems[];
   defaultValue?: string;
-  setSelectValueObj: (prev) => void;
+  setSelectValueObj?: (prev: any) => void;
 }
 
 const SelectInputField: React.FC<SelectInputFieldProps> = ({
@@ -34,15 +28,18 @@ const SelectInputField: React.FC<SelectInputFieldProps> = ({
   placeholder,
   setSelectValueObj,
 }) => {
-  const onSelectChange = (value) => {
-    setSelectValueObj(value);
+  const onSelectChange = (value: any) => {
+    if (setSelectValueObj) {
+      setSelectValueObj(value);
+    }
   };
+
   return (
     <div>
       <Label htmlFor={name}>{label}</Label>
-      <div className="mt-2">
+      <div className="mt-2 text-xs font-normal">
         <Select onValueChange={onSelectChange} defaultValue={defaultValue}>
-          <SelectTrigger className={cn(`ring-1 ring-gray-100`, className)}>
+          <SelectTrigger className={cn(`h-9`, className)}>
             <SelectValue placeholder={placeholder} />
           </SelectTrigger>
           <SelectContent>

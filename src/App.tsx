@@ -7,7 +7,6 @@ import ProfilePopover from "./pages/ProfilePopover";
 import RateCalculator from "./pages/RateCalculator";
 import WalletHistory from "./pages/WalletHistory";
 import OrderDetails from "./pages/OrderDetails";
-import { NewCustomerDialog } from "./pages/NewCustomerDialog.tsx";
 import CreateCSBIVOrder from "./pages/CreateCSBIVOrder.tsx";
 import FranchiseKYCSettings from "./pages/FranchiseKYCSettings.tsx";
 
@@ -25,7 +24,6 @@ const router = createBrowserRouter([
   { path: "/orderDetails", element: <OrderDetails /> },
   { path: "/franchisekycsettings", element: <FranchiseKYCSettings /> },
   // { path: "/test2", element: <CSVtoJSON /> },
-  { path: "/addNewCustomer", element: <NewCustomerDialog /> },
   { path: "/createcsbIV", element: <CreateCSBIVOrder /> },
 ]);
 function App() {

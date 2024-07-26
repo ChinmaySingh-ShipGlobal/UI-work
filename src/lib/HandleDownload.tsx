@@ -9,9 +9,8 @@ export default function handleDownload(fields, data, downloadLinkRef, exportedFi
   }
 
   const csvHeader = fields.join(",");
-
   const csvContent = [
-    csvHeader, // Adding header row as the first row
+    csvHeader,
     ...data.map((row) =>
       fields
         .map((field) => {

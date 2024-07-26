@@ -5,7 +5,6 @@ export default function handleUpload(file, onDataExtracted) {
   }
 
   const reader = new FileReader();
-
   reader.onload = (event) => {
     if (!event.target) return;
 
@@ -31,7 +30,6 @@ export default function handleUpload(file, onDataExtracted) {
         extractedData.push(rowData);
       }
     }
-
     onDataExtracted(extractedData);
   };
 
